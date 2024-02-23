@@ -1,11 +1,13 @@
-import logo from './logo.svg';
+// src/App.js
+import React from 'react';
 import './App.css';
-import StockTradingGame from './StockTradingGame';
 
 function App() {
   return (
     <div className="App">
-      <StockTradingGame />
+      <header className="App-header">
+        <h1>Hello World!</h1>
+      </header>
     </div>
   );
 }
