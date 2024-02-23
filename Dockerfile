@@ -1,22 +1,20 @@
-# Utilisez l'image Node.js officielle comme base
-FROM node:20
+FROM node:21.6.2-alpine3.18
 
-# Définissez le répertoire de travail dans le conteneur
-WORKDIR /usr/src/app
+# Set the working directory
+WORKDIR /app
 
-# Copiez les fichiers du package.json et du package-lock.json pour installer les dépendances
-COPY package*.json ./
+# Copy only the package files first to leverage Docker cache
+COPY package.json .
+COPY package-lock.json .
 
-# Installez les dépendances
-RUN npm install
+# Install app dependencies
+RUN npm install --silent
 
-# Copiez le reste des fichiers de l'application
+# Install react-scripts globally (if needed)
+RUN npm install react-scripts@3.4.1 -g --silent
+
+# Copy the rest of the application
 COPY . .
 
-# Construisez l'application React pour la production
-RUN npm run build
-
-EXPOSE 3000
-
-# Commande pour démarrer l'application
+# Start the app
 CMD ["npm", "start"]
