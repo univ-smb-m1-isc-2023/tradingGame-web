@@ -8,12 +8,10 @@ on:
 jobs:
   build:
     name: Build master branch
+    permissions: write-all
     runs-on: ubuntu-22.04
 
-    permissions:
-      contents: read
-      packages: write
-      actions: write
+    
 
     steps:
       - name: Checkout repository
