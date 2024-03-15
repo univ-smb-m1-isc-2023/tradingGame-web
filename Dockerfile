@@ -1,20 +1,42 @@
-FROM node:21.6.2-alpine3.18
+# Use the official Node.js image as the base
+FROM node:21.6.2-alpine3.18  AS deps
 
-# Set the working directory
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
 
-# Copy only the package files first to leverage Docker cache
-COPY package.json .
-COPY package-lock.json .
-
-# Install app dependencies
-RUN npm install --silent
-
-# Install react-scripts globally (if needed)
-RUN npm install react-scripts@3.4.1 -g --silent
-
-# Copy the rest of the application
+# Rebuild the source code only when needed
+FROM node:21.6.2-alpine3.18   AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Start the app
-CMD ["npm", "start"]
+RUN npm run build
+
+# Production image, copy all the files and run next
+FROM  node:21.6.2-alpine3.18   AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/next.config.mjs ./
+#COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+
+CMD ["npm", "run","dev"]
