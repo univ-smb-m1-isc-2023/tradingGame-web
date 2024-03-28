@@ -126,7 +126,7 @@ export function NavbarDefault() {
             variant="gradient"
             size="sm"
             className="hidden lg:inline-block"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
-                <Link href="/account">
+                <Link href="/login">
             <span>Sign in</span>
             </Link>
           </Button>
