@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 
 import { SiGithub } from "react-icons/si";
-
+import Link from 'next/link';
 
 export function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -121,12 +121,16 @@ export function NavbarDefault() {
             <span>Log In</span>
           </Button>
           <Button
+
             placeholder=""
             variant="gradient"
             size="sm"
             className="hidden lg:inline-block"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
+                <Link href="/account">
             <span>Sign in</span>
+            </Link>
           </Button>
+          
         </div>
         <IconButton
           placeholder=""
