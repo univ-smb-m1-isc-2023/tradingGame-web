@@ -9,6 +9,7 @@ export function detailsPage() {
       <>
         <div className="min-h-screen bg-blue-gray-50/50 flex">
           <div className="w-1/4">
+            
             <Sidebar />
           </div>
           <SymbolList/>

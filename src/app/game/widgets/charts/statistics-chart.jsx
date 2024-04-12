@@ -8,13 +8,13 @@ import {
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
 
-export function StatisticsChart({ color, chart, title, description, footer }) {
+export function StatisticsChart({ color, chart, title, description, footer,height,width }) {
   return (
-    <Card className="border border-blue-gray- shadow-sm">
-      <CardHeader variant="gradient" color={color} floated={false} shadow={false}>
-        <Chart {...chart} />
+    <Card className="border border-blue-gray-100 shadow-sm pt-12">
+      <CardHeader variant="gradient" color={color} floated={true} shadow={false}>
+        <Chart height={height} width={width} {...chart} />
       </CardHeader>
-      <CardBody className="px-6 pt-0">
+      <CardBody className="px-4  pt-0">
         <Typography variant="h6" color="blue-gray">
           {title}
         </Typography>
@@ -34,7 +34,6 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
 StatisticsChart.defaultProps = {
   color: "blue",
   footer: null,
-  height: 800, // Default height
 };
 
 StatisticsChart.propTypes = {

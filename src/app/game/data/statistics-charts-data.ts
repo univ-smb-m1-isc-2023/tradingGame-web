@@ -5,8 +5,14 @@ const getData = async (symbol: string) => {
   try {
     const data = await fetchFinancialData(symbol);
     console.log(data);
-
+    data?.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateA.getTime() - dateB.getTime(); // Utilisez getTime() pour comparer les dates en millisecondes
+    });
+    
     const { categories, series } = await dataToLegends(data);
+    
     console.log("Categories:", categories);
     console.log("Series:", series);
     return { categories, series };
@@ -23,6 +29,7 @@ interface FinancialData {
   high: number;
   close: number;
   volume: number;
+  id: number;
   [key: string]: string | number; // Index signature
 }
 
@@ -40,7 +47,7 @@ const dataToLegends = async (rawData: FinancialData[]) => {
   
 
   // Separating data by properties (low, open, high, close)
-  const series = Object.keys(rawData[0]).filter(key => key !== "date" && key !== "volume").map(property => {
+  const series = Object.keys(rawData[0]).filter(key => key !== "date" && key !== "volume" && key !== "id").map(property => {
     return {
       name: property,
       data: rawData.map(item => item[property])
@@ -73,7 +80,8 @@ let dailySalesChart: {
 export const fetchCharttoData = async (symbol : any) => {
   try {
     let data = await getData(symbol); // Assuming getData returns a Promise
-    data?.categories.reverse();
+    
+    
     const categoriesData = data?.categories ?? [];
     const seriesData = data?.series ?? [];
     console.log("Categories:", categoriesData);

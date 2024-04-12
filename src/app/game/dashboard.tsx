@@ -164,9 +164,12 @@ export function Dashboard() {
             key={title}
             {...rest}
             title={title}
+
             icon={React.createElement(icon, {
               className: "w-6 h-6 text-white",
-            })}
+            }
+          
+          )}
             footer={
               <Typography className="font-normal text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                 <strong className={footer.color}>{footer.value}</strong>
@@ -176,7 +179,7 @@ export function Dashboard() {
           />
         ))}
       </div>
-     <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
+     <div className="mb-12 grid grid-cols-1 gap-y-20 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
       
      {loading ? (
   <p>Loading...</p>
@@ -185,8 +188,8 @@ export function Dashboard() {
     <StatisticsChart
       key={props.title}
       {...props}
-      style={{ height: '1000px' }}
-
+      width = {500}
+      heigth = {1200}
       footer={<TimeRangeButtons onSelect={(range: any) => handleSelect(range)} />}
     />
   ))

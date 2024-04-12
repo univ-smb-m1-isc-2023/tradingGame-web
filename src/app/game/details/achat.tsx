@@ -61,9 +61,11 @@ const AchatComponent: React.FC = () => { // Renommez le composant en PascalCase
     <p>Loading...</p>
   ) : (
     <StatisticsChart
+       width = {1200}
+      heigth = {3600}
+
       key={statisticsChartsData[0].title}
       {...statisticsChartsData[0]}
-      style={{ height: '1000px' }}
       footer={<TimeRangeButtons onSelect={(range: any) => handleSelect(range)} />}
     />
   )}
