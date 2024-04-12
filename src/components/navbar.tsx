@@ -178,7 +178,7 @@ export function NavbarDefault() {
               <span>Log In</span>
             </Button>
             <Button placeholder="" fullWidth variant="gradient" size="sm" className=""  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-              <span>Sign in</span>
+              <span>            <Link href="/signup">Go to Sign Up</Link></span>
             </Button>
           </div>
         </div>

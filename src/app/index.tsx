@@ -1,3 +1,4 @@
+"use client";
 
 export * from "./accueil";
 export * from "./explications"

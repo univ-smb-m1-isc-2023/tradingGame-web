@@ -7,6 +7,7 @@ import Explications_games from "./explication_games";
 export default function Campaign() {
   return (
     <>
+    
       <NavbarDefault/>
       <Accueil/>
       <Explications/>

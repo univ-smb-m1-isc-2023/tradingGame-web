@@ -12,8 +12,8 @@ function Accueil() {
             variant="h1"
             color="gray"
             className="md:max-w-full lg:max-w-8xl font-extrabold text-5xl leading-tight"
-            onPointerEnterCapture=""
-            onPointerLeaveCapture=""
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           >
             Be the Master of Trading
           </Typography>
