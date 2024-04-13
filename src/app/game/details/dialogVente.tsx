@@ -1,0 +1,68 @@
+import React from "react";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
+ 
+export function DialogVente() {
+  const [open, setOpen] = React.useState(false);
+ 
+  const handleOpen = () => setOpen(!open);
+ 
+
+
+  return (
+    <>
+      <Button className="px-4 py-4 bg-red-500 text-white rounded-md focus:outline-none" onClick={handleOpen} variant="gradient"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        Vente
+      </Button>
+      <Dialog open={open} handler={handleOpen}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+  <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-80"> {/* Ajoutez la classe bg-white pour définir un arrière-plan blanc */}
+    <div className="border border-black p-4 rounded-lg bg-white">
+      <DialogHeader  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>Vente d'ordre de trading</DialogHeader>
+      <DialogBody  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <div className="mb-4">
+          <label htmlFor="sellingPrice" className="block text-sm font-medium text-gray-700">Prix de vente :</label>
+          <input
+            type="number"
+            id="sellingPrice"
+            placeholder="Entrez le prix de vente"
+            className="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="quantity" className="block text-sm font-medium text-gray-700">Quantité à vendre :</label>
+          <input
+            type="number"
+            id="quantity"
+            placeholder="Entrez la quantité à vendre"
+            className="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700">Informations supplémentaires :</label>
+          <textarea
+            id="additionalInfo"
+            rows={3}
+            placeholder="Entrez des informations supplémentaires (facultatif)"
+            className="border border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+      </DialogBody>
+      <DialogFooter  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <Button variant="text" color="red" onClick={handleOpen} className="mr-1"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <span>Annuler</span>
+        </Button>
+        <Button variant="text" color="red" onClick={handleOpen} className="mr-1"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <span>Confirmer la vente</span>
+        </Button>
+      </DialogFooter>
+    </div>
+  </div>
+</Dialog>  
+  </>
+  );
+}
