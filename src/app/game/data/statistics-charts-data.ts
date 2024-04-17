@@ -1,9 +1,10 @@
 import { chartsConfig } from "../configs";
 import fetchFinancialData from "../../api/apiFinance";
-
-const getData = async (symbol: string) => {
+import { subDays, subWeeks, subMonths, subYears, format } from 'date-fns';
+import {symbolToId} from "../../symbol/symboltoId" 
+const getData = async (symbol: string,startDate : Date, endDate : Date) => {
   try {
-    const data = await fetchFinancialData(symbol);
+    const data = await fetchFinancialData(symbol,startDate,endDate);
     console.log(data);
     data?.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
       const dateA = new Date(a.date);
@@ -48,6 +49,7 @@ const dataToLegends = async (rawData: FinancialData[]) => {
 
   // Separating data by properties (low, open, high, close)
   const series = Object.keys(rawData[0]).filter(key => key !== "date" && key !== "volume" && key !== "id").map(property => {
+    
     return {
       name: property,
       data: rawData.map(item => item[property])
@@ -76,10 +78,54 @@ let dailySalesChart: {
   },
 };
 
+const calculateStartDate = (range: string, endTime: Date): string => {
+  let startDate: Date;
 
-export const fetchCharttoData = async (symbol : any) => {
+  // Extraire le type de plage de temps et le nombre de jours, semaines, mois ou années
+  const [, num, unit] = range.match(/^(\d+)([DWMY])$/i) || [];
+
+  if (!num || !unit) {
+    throw new Error('Invalid range format');
+  }
+
+  const numInt = parseInt(num, 10);
+
+  // Calculer la date de début en fonction du type de plage de temps
+  switch (unit.toUpperCase()) {
+    case 'D':
+      startDate = subDays(new Date(), numInt);
+      break;
+    case 'W':
+      startDate = subWeeks(new Date(), numInt);
+      break;
+    case 'M':
+      startDate = subMonths(new Date(), numInt);
+      break;
+    case 'Y':
+      startDate = subYears(new Date(), numInt);
+      break;
+    default:
+      throw new Error('Invalid range unit');
+  }
+
+  // Formater la date de début comme une chaîne au format 'yyyy-MM-dd'
+  return format(startDate, 'yyyy-MM-dd');
+};
+
+
+
+export async function reloadData(range: string, symbol: string) {
+  const endDate: Date = new Date('2023-11-23'); // End time
+  const startDate = calculateStartDate(range, endDate);
+  const endDateString = format(endDate, 'yyyy-MM-dd'); ;
+  const idSymbol: string = symbolToId(symbol);
+  // fetchstatisticsChartsData[idSymbol] = await fetchCharttoData(symbol,startDate,endDate);
+}
+
+
+export const fetchCharttoData = async (symbol : any,startTime:any, endTime :any) => {
   try {
-    let data = await getData(symbol); // Assuming getData returns a Promise
+    let data = await getData(symbol,startTime,endTime); // Assuming getData returns a Promise
     
     
     const categoriesData = data?.categories ?? [];
@@ -98,13 +144,13 @@ export const fetchCharttoData = async (symbol : any) => {
 
     return {
       type: "line",
-      height: 220,
+      height: 420,
       series: seriesData,
       options: {
         ...chartsConfig,
         colors: ["#9400D3", "#FFD700", "#0000FF", "#008000"],
         stroke: {
-          lineCap: "round",
+          curve: 'straight',
         },
         markers: {
           size: 5,
@@ -121,33 +167,16 @@ export const fetchCharttoData = async (symbol : any) => {
   }
 };
 
-export const  fetchstatisticsChartsData =  async () => {
-  return [
-  {
-    //RACE
-    color: "red",
-    title: "FERARRI",
-    description: "",
-    footer: "1 2 3 4 5 6",
-    chart: await fetchCharttoData("RACE"),
-  },
-  {
-    //MBGYY
-    color: "blue",
-    title: "Mercedes",
-    description: "",
-    footer: "1 2 3 4 5 6",
-    chart: await fetchCharttoData("MBGYY"),
-  },
-  {
-    //RNLSY
-    color: "yellow",
-    title: "Renault",
-    description: "",
-    footer: "1 2 3 4 5 6",
-    chart: await fetchCharttoData("RNLSY"),
-  },
-];
-}
 
-export default fetchstatisticsChartsData;
+export const fetchstatisticsChartData = async (title: string, symbol: string, startDate: string, endDate: string) => {
+  return {
+    color: "black",
+    title: title,
+    description: symbol,
+    footer: "",
+    chart: await fetchCharttoData(symbol, startDate, endDate),
+  };
+};
+
+
+

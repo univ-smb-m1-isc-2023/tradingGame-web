@@ -119,10 +119,9 @@ import {
   statisticsCardsData,
   projectsTableData,
   ordersOverviewData,
-  fetchstatisticsChartsData,
+  fetchstatisticsChartData,
 } from "./data";
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
-import {TimeRangeButtons} from "../../components"
 
 export function Dashboard() {
   
@@ -132,9 +131,10 @@ export function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchstatisticsChartsData();
-        console.log("------------")
-        console.log(data)
+        const listOfSymbol = ["AAPL","AMZN","TSLA"];
+        const data = await Promise.all(listOfSymbol.map(symbol => fetchstatisticsChartData(symbol, symbol, "2023-01-01", "2024-01-01")));
+        console.log("data")
+        console.log(data);
         if (data) {
           setStatisticsChartsData(data);
         } else {
@@ -149,7 +149,6 @@ export function Dashboard() {
 
     fetchData();
   }, []);
-
 
 
   function handleSelect(range: any) {
@@ -188,9 +187,8 @@ export function Dashboard() {
     <StatisticsChart
       key={props.title}
       {...props}
-      width = {500}
-      heigth = {1200}
-      footer={<TimeRangeButtons onSelect={(range: any) => handleSelect(range)} />}
+      width = {350}
+      heigth = {500}
     />
   ))
 )}

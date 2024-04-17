@@ -7,7 +7,7 @@ export default function Chart({ Data }: { Data: any[] }) {
   return (
     <>
       <h2>Recharts Line Chart Component</h2>
-      <div style={{ width: '100%', height: '300px', overflowX: 'scroll' }}>
+      <div style={{ width: '100%', height: '1200px', overflowX: 'scroll' }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={Data}>
             <XAxis dataKey="date"  domain={['auto', 'auto']} />

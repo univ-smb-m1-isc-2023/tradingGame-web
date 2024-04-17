@@ -1,7 +1,7 @@
 export const chartsConfig = {
   chart: {
     toolbar: {
-      show: false,
+      show: true,
     },
   },
   title: {
@@ -20,7 +20,7 @@ export const chartsConfig = {
     labels: {
       style: {
         colors: "#37474f",
-        fontSize: "13px",
+        fontSize: "9px",
         fontFamily: "inherit",
         fontWeight: 300,
       },
@@ -30,7 +30,7 @@ export const chartsConfig = {
     labels: {
       style: {
         colors: "#37474f",
-        fontSize: "13px",
+        fontSize: "9px",
         fontFamily: "inherit",
         fontWeight: 300,
       },
@@ -39,19 +39,19 @@ export const chartsConfig = {
   grid: {
     show: true,
     borderColor: "#dddddd",
-    strokeDashArray: 5,
+    strokeDashArray: 6,
     xaxis: {
       lines: {
-        show: true,
+        show: false,
       },
     },
     padding: {
-      top: 5,
+      top: 0,
       right: 20,
     },
   },
   fill: {
-    opacity: 0.8,
+    opacity: 0.6,
   },
   tooltip: {
     theme: "dark",
