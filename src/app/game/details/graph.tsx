@@ -1,6 +1,6 @@
 "use effect"
 import React, { useEffect, useState } from 'react';
-import { StatisticsChart } from '../widgets/charts';
+import { StatisticsChart  } from '../widgets/charts';
 import { fetchstatisticsChartData } from '../data/statistics-charts-data';
 import { DialogAchat } from './dialogAchat';
 import { DialogVente } from './dialogVente';

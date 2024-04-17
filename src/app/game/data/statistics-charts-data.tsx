@@ -1,6 +1,5 @@
 import { chartsConfig } from "../configs";
 import fetchFinancialData from "../../api/apiFinance";
-import { subDays, subWeeks, subMonths, subYears, format } from 'date-fns';
 import {symbolToId} from "../../symbol/symboltoId" 
 const getData = async (symbol: string,startDate : Date, endDate : Date) => {
   try {
@@ -78,49 +77,7 @@ let dailySalesChart: {
   },
 };
 
-const calculateStartDate = (range: string, endTime: Date): string => {
-  let startDate: Date;
 
-  // Extraire le type de plage de temps et le nombre de jours, semaines, mois ou années
-  const [, num, unit] = range.match(/^(\d+)([DWMY])$/i) || [];
-
-  if (!num || !unit) {
-    throw new Error('Invalid range format');
-  }
-
-  const numInt = parseInt(num, 10);
-
-  // Calculer la date de début en fonction du type de plage de temps
-  switch (unit.toUpperCase()) {
-    case 'D':
-      startDate = subDays(new Date(), numInt);
-      break;
-    case 'W':
-      startDate = subWeeks(new Date(), numInt);
-      break;
-    case 'M':
-      startDate = subMonths(new Date(), numInt);
-      break;
-    case 'Y':
-      startDate = subYears(new Date(), numInt);
-      break;
-    default:
-      throw new Error('Invalid range unit');
-  }
-
-  // Formater la date de début comme une chaîne au format 'yyyy-MM-dd'
-  return format(startDate, 'yyyy-MM-dd');
-};
-
-
-
-export async function reloadData(range: string, symbol: string) {
-  const endDate: Date = new Date('2023-11-23'); // End time
-  const startDate = calculateStartDate(range, endDate);
-  const endDateString = format(endDate, 'yyyy-MM-dd'); ;
-  const idSymbol: string = symbolToId(symbol);
-  // fetchstatisticsChartsData[idSymbol] = await fetchCharttoData(symbol,startDate,endDate);
-}
 
 
 export const fetchCharttoData = async (symbol : any,startTime:any, endTime :any) => {
@@ -133,14 +90,7 @@ export const fetchCharttoData = async (symbol : any,startTime:any, endTime :any)
     console.log("Categories:", categoriesData);
     console.log("Series:", seriesData);
     
-    // Construct the key for LocalStorage based on the symbol
-    const localStorageKey = `${symbol}Data`;
-
-    // Convert data to JSON string
-    const jsonData = JSON.stringify(data);
-
     // Save data to LocalStorage
-    localStorage.setItem(localStorageKey, jsonData);
 
     return {
       type: "line",

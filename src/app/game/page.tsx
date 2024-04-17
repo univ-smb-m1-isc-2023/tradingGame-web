@@ -7,7 +7,7 @@ export function DashboardHome() {
   // Assuming setOpenConfigurator and useMaterialTailwindController are being used somewhere
   return (
     <>
-      <div className="min-h-screen bg-blue-gray-50/50 flex">
+      <div className="min-h-screen bg-blue-gray-50/50 h-full  flex">
         <div className="w-1/4">
           <Sidebar />
         </div>

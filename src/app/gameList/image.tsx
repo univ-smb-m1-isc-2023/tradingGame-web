@@ -6,16 +6,18 @@ const ImageBackTop: React.FC = () => {
 
 
   const imgStyle: React.CSSProperties = {
-    height: "20%", // Set the height of the image to 20%
+    height: "300px", // Set the height of the image to 10% of its containing element's height
+    width: "100%", // Set the width of the image to 100% of its containing element's width
+    objectFit: "cover" // Ensure the image covers the entire container while maintaining its aspect ratio
   };
-
+  
   return (
-    <div >
+    <div>
       <a href="https://fxmedia.s3.amazonaws.com/articles/forex-trading-account-1.jpg" target="_blank">
         <img src="https://fxmedia.s3.amazonaws.com/articles/forex-trading-account-1.jpg" style={imgStyle} alt="Background" />
       </a>
     </div>
   );
-};
+  };
 
 export default ImageBackTop;

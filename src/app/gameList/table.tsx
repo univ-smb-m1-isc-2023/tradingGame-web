@@ -19,7 +19,7 @@ export default function GameTable() {
                   <span className="mt-1 font-medium text-secondary-dark text-lg/normal">All projects from the Loopple team</span>
                 </h3>
                 <div className="relative flex flex-wrap items-center my-2">
-                  <a href="#" className="inline-block text-[.925rem] font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-150 ease-in-out text-light-inverse bg-light-dark border-light shadow-none border-0 py-2 px-5 hover:bg-secondary active:bg-light focus:bg-light"> See other projects </a>
+                  <a href="/game" className="inline-block text-[.925rem] font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-150 ease-in-out text-light-inverse bg-light-dark border-light shadow-none border-0 py-2 px-5 hover:bg-secondary active:bg-light focus:bg-light"> See other projects </a>
                 </div>
               </div>
               {/* end card header */}
@@ -46,7 +46,7 @@ export default function GameTable() {
                               <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/img-49-new.jpg" className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="" />                      
                             </div>
                             <div className="flex flex-col justify-start">
-                              <a href="#" className="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Social Media API </a>
+                              <a href="/game" className="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Social Media API </a>
                             </div>
                           </div>
                         </td>
@@ -122,31 +122,7 @@ export default function GameTable() {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-5">
-        <div className="w-full max-w-full sm:w-3/4 mx-auto text-center">
-          <p className="text-sm text-slate-500 py-1">
-            Tailwind CSS Component from{" "}
-            <a
-              href="https://www.loopple.com/theme/riva-dashboard-tailwind?ref=tailwindcomponents"
-              className="text-slate-700 hover:text-slate-900"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Riva Dashboard
-            </a>{" "}
-            by{" "}
-            <a
-              href="https://www.loopple.com"
-              className="text-slate-700 hover:text-slate-900"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Loopple Builder
-            </a>
-            .
-          </p>
-        </div>
-      </div>
+    
     </div>
   );
 }
