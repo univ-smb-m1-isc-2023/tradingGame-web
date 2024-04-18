@@ -1,46 +1,17 @@
-export const projectsTableData = [
-  {
-    img: "/img/logo-xd.svg",
-    name: "Robeert",
-    rank: -2,
-    budget: "14000€",
-    completion: 60,
-  },
-  {
-    img: "/img/logo-atlassian.svg",
-    name: "Roro",
-    rank: -2,
-    budget: "$3,000",
-    completion: 10,
-  },
-  {
-    img: "/img/logo-slack.svg",
-    name: "Fix Platform Errors",
-    rank: -2,
-    budget: "Not set",
-    completion: 100,
-  },
-  {
-    img: "/img/logo-spotify.svg",
-    name: "Launch our Mobile App",
-    rank: -2,
-    budget: "$20,500",
-    completion: 100,
-  },
-  {
-    img: "/img/logo-jira.svg",
-    name: "Add the New Pricing Page",
-    rank: -2,
-    budget: "$500",
-    completion: 25,
-  },
-  {
-    img: "/img/logo-invision.svg",
-    name: "Redesign New Online Shop",
-    rank: -2,
-    budget: "$2,000",
-    completion: 40,
-  },
-];
+import { fetchPlayer } from "@/app/api/apiFinance";
+import { Game } from "../interface/Game";
+import { PlayerInfo } from "../interface/PlayerInfo";
 
-export default projectsTableData;
+export const membersGameData = async (game: Game) => {
+  const sortedWallets = game.wallets.slice().sort((a, b) => b.balance - a.balance);
+  const finalTable = [];
+  let i = 1; // Initialize rank counter
+  for (const wallet of sortedWallets) { // Use for...of loop to iterate over game.wallets
+    finalTable.push({
+      name: wallet.ownerUsername,
+      rank: i++,
+      budget: wallet.balance,
+    });
+  }
+  return finalTable; // Don't forget to return the finalTable array
+};

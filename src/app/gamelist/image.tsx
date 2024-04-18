@@ -13,7 +13,7 @@ const ImageBackTop: React.FC = () => {
   
   return (
     <div>
-      <a href="https://fxmedia.s3.amazonaws.com/articles/forex-trading-account-1.jpg" target="_blank">
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
         <img src="https://fxmedia.s3.amazonaws.com/articles/forex-trading-account-1.jpg" style={imgStyle} alt="Background" />
       </a>
     </div>

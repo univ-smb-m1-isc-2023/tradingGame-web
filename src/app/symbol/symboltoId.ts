@@ -25,12 +25,12 @@ export const symbolToId = (symbol: string): string => {
     }
   };
   
-
-  interface SymbolInfo {
+  export interface SymbolInfo {
     id: string;
     symbol: string;
     name: string;
   }
+
 
   export const idToSymbol = (id: string): SymbolInfo | undefined => {
     switch (id) {
@@ -58,4 +58,17 @@ export const symbolToId = (symbol: string): string => {
         return undefined;
     }
   };
+
+  export const symbolList: SymbolInfo[] = [
+    { id: "1", symbol: "AAPL", name: "Apple Inc." },
+    { id: "2", symbol: "AMZN", name: "Amazon.com Inc." },
+    { id: "3", symbol: "TSLA", name: "Tesla, Inc." },
+    { id: "4", symbol: "GOOGL", name: "Alphabet Inc." },
+    { id: "5", symbol: "MSFT", name: "Microsoft Corporation" },
+    { id: "6", symbol: "NFLX", name: "Netflix, Inc." },
+    { id: "7", symbol: "NVDA", name: "NVIDIA Corporation" },
+    { id: "8", symbol: "FB", name: "Meta Platforms, Inc." },
+    { id: "9", symbol: "SHOP", name: "Shopify Inc." },
+    { id: "10", symbol: "BA", name: "The Boeing Company" }
+  ];
   

@@ -1,97 +1,3 @@
-// "use client";
-
-// import React, { useEffect, useState } from "react";
-// import fetchFinancialData from "../api/apiFinance";
-// import Chart from "./ChartComponent";
-// import { Routes, Route } from "react-router-dom";
-// import { Cog6ToothIcon } from "@heroicons/react/24/solid";
-// import { IconButton } from "@material-tailwind/react";
-// import {
-//   Sidenav,
-//   DashboardNavbar,
-//   Configurator,
-//   Footer,
-// } from "@/widgets/layout";
-// import routes from "@/routes";
-// import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
-
-
-
-// const Dashboard = () => {
-//   const [financialDataAAPL, setFinancialDataAAPL] = useState(null);
-//   const [financialDataSamsung, setFinancialDataSamsung] = useState(null);
-//   const [financialDataGoogle, setFinancialDataGoogle] = useState(null);
-//   // Add state variables for additional financial data here
-//   const [controller, dispatch] = useMaterialTailwindController();
-//   const { sidenavType } = controller;
-  
-//   useEffect(() => {
-//     const fetchData = async (symbol: string, setter: { (value: React.SetStateAction<null>): void; (value: React.SetStateAction<null>): void; (value: React.SetStateAction<null>): void; (arg0: any): void; }) => {
-//       try {
-//         const data = await fetchFinancialData(symbol);
-//         setter(data);
-//       } catch (error) {
-//         console.error(`Error fetching data for ${symbol}:`, error);
-//       }
-//     };
-
-//     // Fetch data for AAPL
-//     fetchData("AAPL", setFinancialDataAAPL);
-//     // Fetch data for Samsung
-//     fetchData("NVDA", setFinancialDataSamsung);
-//     // Fetch data for Google
-//     fetchData("GOOGL", setFinancialDataGoogle);
-//     // Add fetch data for additional symbols here
-//   }, []);
-
-//   return (
-//     <div className="flex justify-center items-center h-screen">
-//       <div className="w-3/4">
-//         <h1 className="text-3xl font-bold mb-8">My Dashboard</h1>
-//         {/* Add other dashboard elements here */}
-//       </div>
-//       <div className="w-1/4 ml-4 flex flex-col space-y-4">
-//         <div className="bg-white shadow-md p-4 flex-grow">
-//           <h2 className="text-xl font-bold mb-2">AAPL Chart</h2>
-//           <div className="flex-grow">
-//             {financialDataAAPL ? (
-//               <Chart Data={financialDataAAPL} />
-//             ) : (
-//               <p className="text-center">Loading data...</p>
-//             )}
-//           </div>
-//         </div>
-//         <div className="bg-white shadow-md p-4 flex-grow">
-//           <h2 className="text-xl font-bold mb-2">Samsung Chart</h2>
-//           <div className="flex-grow">
-//             {financialDataSamsung ? (
-//               <Chart Data={financialDataSamsung} />
-//             ) : (
-//               <p className="text-center">Loading data...</p>
-//             )}
-//           </div>
-//         </div>
-//         <div className="bg-white shadow-md p-4 flex-grow">
-//           <h2 className="text-xl font-bold mb-2">Google Chart</h2>
-//           <div className="flex-grow">
-//             {financialDataGoogle ? (
-//               <Chart Data={financialDataGoogle} />
-//             ) : (
-//               <p className="text-center">Loading data...</p>
-//             )}
-//           </div>
-//         </div>
-//         {/* Add additional chart components here */}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-
-
-
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -116,48 +22,77 @@ import {
 import { StatisticsCard } from "./widgets/cards";
 import { StatisticsChart } from "./widgets/charts";
 import {
-  statisticsCardsData,
-  projectsTableData,
-  ordersOverviewData,
+  
   fetchstatisticsChartData,
+  FetchStatisticsCardsData,
+  membersGameData,
+  ordersOverviewDataonPending,
 } from "./data";
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { fetchGame, fetchPlayer } from "../api/apiFinance";
+import { PlayerInfo } from "./interface/PlayerInfo";
+import { useSearchParams } from "next/navigation";
+import { Game } from "./interface/Game";
+import { symbolList } from "../symbol/symboltoId";
+
+
 
 export function Dashboard() {
-  
+  const [playerInfo, setPlayerInfo] = useState<PlayerInfo | null>(null); // Set initial value as null
+  const [gameInfo, setGameInfo] = useState<Game | null>(null); // Set initial value as null
+
+  const searchParams = useSearchParams();
+  const [membersGame, setMembersGame] = useState<any[]>([]); // Set initial value as null
   const [statisticsChartsData, setStatisticsChartsData] = useState<any[]>([]);
+  const [statisticsCardsData, setstatisticsCardsData] = useState<any[]>([]);
+  const [ordersOverviewData, setordersOverviewData] = useState<any[]>([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const listOfSymbol = ["AAPL","AMZN","TSLA"];
-        const data = await Promise.all(listOfSymbol.map(symbol => fetchstatisticsChartData(symbol, symbol, "2023-01-01", "2024-01-01")));
-        console.log("data")
-        console.log(data);
-        if (data) {
-          setStatisticsChartsData(data);
-        } else {
-          console.error("Invalid data format:", data);
+        const playerID = searchParams.get("playerID");
+        const gameID = searchParams.get("gameID");
+        let gameResponse = null
+        let playerResponse = null
+        if (playerID!=null) {
+          playerResponse = await fetchPlayer(playerID);
+          setPlayerInfo(playerResponse);
         }
+
+        if (gameID!=null) {
+          gameResponse = await fetchGame(gameID);
+          setGameInfo(gameResponse)
+        }
+  
+        if (gameResponse && gameID && playerResponse) {
+          const listOfSymbol = symbolList.slice(0, 3);
+          const data = await Promise.all(listOfSymbol.map(symbol => fetchstatisticsChartData(symbol.name, symbol.symbol, gameResponse?.initialDate, gameResponse?.currentDate)));
+          setStatisticsChartsData(data);
+          const dataCard = await FetchStatisticsCardsData(listOfSymbol,gameResponse.currentDate)
+          setstatisticsCardsData(dataCard)
+          const dataMembers = await membersGameData(gameResponse)
+          setMembersGame(dataMembers)
+          const dataPendingOrders = ordersOverviewDataonPending(gameID,playerResponse)
+          setordersOverviewData(dataPendingOrders)
+          setLoading(false); // Move setLoading(false) inside the fetchData function
+        }
+
       } catch (error) {
-        console.error("Error fetching statisticsChartsData:", error);
-      } finally {
-        setLoading(false);
+        console.error("Error fetching data:", error);
       }
     };
+  
+    fetchData(); // Call fetchData directly inside useEffect
+  
+  }, []); // Empty dependency array to run once on mount
+  
 
-    fetchData();
-  }, []);
-
-
-  function handleSelect(range: any) {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <div className="mt-12">
-      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-3 xl:grid-cols-3">
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
@@ -214,87 +149,41 @@ export function Dashboard() {
                 <strong>Day 1</strong> 
               </Typography>
             </div>
-            <Menu placement="left-start">
-              <MenuHandler>
-                <IconButton size="sm" variant="text" color="blue-gray"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-                  <EllipsisVerticalIcon
-                    strokeWidth={3}
-                    fill="currenColor"
-                    className="h-6 w-6"
-                  />
-                </IconButton>
-              </MenuHandler>
-              <MenuList  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-                <MenuItem  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>Action</MenuItem>
-                <MenuItem  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>Another Action</MenuItem>
-                <MenuItem  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>Something else here</MenuItem>
-              </MenuList>
-            </Menu>
+         
           </CardHeader>
           <CardBody className="overflow-x-scroll px-0 pt-0 pb-2"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-            <table className="w-full min-w-[640px] table-auto">
-              <thead>
-                <tr>
-                  {["Members", "Money","Rank"].map(
-                    (el) => (
-                      <th
-                        key={el}
-                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
-                      >
-                        <Typography
-                          variant="small"
-                          className="text-[11px] font-medium uppercase text-blue-gray-400"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                        >
-                          {el}
-                        </Typography>
-                      </th>
-                    )
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {projectsTableData.map(
-                  ({name, rank, budget }, key) => {
-                    const className = `py-3 px-5 ${
-                      key === projectsTableData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
-
-                    return (
+          <table className="w-full min-w-[640px] table-auto">
+                  <thead>
+                    <tr>
+                      {["Members", "Money", "Rank"].map(el => (
+                        <th key={el} className="border-b border-blue-gray-50 py-3 px-6 text-left">
+                          <Typography variant="small" className="text-[11px] font-medium uppercase text-blue-gray-400"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                            {el}
+                          </Typography>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {membersGame.map(({ name, rank, budget }, key) => (
                       <tr key={name}>
-                        <td className={className}>
+                        <td className={`py-3 px-5 ${key === membersGame.length - 1 ? "" : "border-b border-blue-gray-50"}`}>
                           <div className="flex items-center gap-4">
-                            <Typography
-                              variant="small"
-                              color="blue-gray"
-                              className="font-bold"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                            >
-                              {name}
-                            </Typography>
+                            <Typography variant="small" color="blue-gray" className="font-bold"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>{name}</Typography>
                           </div>
                         </td>
-                        
-                        <td className={className}>
-                          <Typography
-                            variant="small"
-                            className="text-xs font-medium text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                          >
-                            {budget}
-                          </Typography>
+                        <td className={`py-3 px-5 ${key === membersGame.length - 1 ? "" : "border-b border-blue-gray-50"}`}>
+                          <Typography variant="small" className="text-xs font-medium text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>{budget}</Typography>
                         </td>
-                        <td className={className}>
+                        <td className={`py-3 px-5 ${key === membersGame.length - 1 ? "" : "border-b border-blue-gray-50"}`}>
                           <div className="w-10/12">
-                          <Typography
-                            variant="small"
-                            className="text-xs font-medium text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                          >
-                            {rank}
-                          </Typography>               
+                            <Typography variant="small" className="text-xs font-medium text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>{rank}</Typography>
                           </div>
                         </td>
                       </tr>
-                    );
-                  }
-                )}
-              </tbody>
-            </table>
+                    ))}
+                  </tbody>
+                </table>
           </CardBody>
         </Card>
         <Card className="border border-blue-gray-100 shadow-sm"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
@@ -313,7 +202,7 @@ export function Dashboard() {
                 strokeWidth={3}
                 className="h-3.5 w-3.5 text-green-500"
               />
-              <strong>24%</strong> this month
+              Liste de tous les ordres en attente
             </Typography>
           </CardHeader>
           <CardBody className="pt-0"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>

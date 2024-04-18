@@ -17,3 +17,33 @@ const fetchFinancialData = async ( symbol: any, startTime : any, endTime: any) =
 };
 
 export default fetchFinancialData;
+
+
+export const fetchGame = async (idGame : string )=>{
+  try {
+    const response = await fetch(`https://tradinggame-api.oups.net/game/${idGame}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch Game info');
+    }
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching Game info:', error);
+  }
+
+
+}
+
+export const fetchPlayer = async (idPlayer : string)=>{
+  try {
+    const response = await fetch(`https://tradinggame-api.oups.net/player/${idPlayer}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch Game info');
+    }
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching Player info:', error);
+  }
+}
+
