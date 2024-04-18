@@ -6,19 +6,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-  Tooltip,
-  Progress,
 } from "@material-tailwind/react";
-import {
-  EllipsisVerticalIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
+
 import { StatisticsCard } from "./widgets/cards";
 import { StatisticsChart } from "./widgets/charts";
 import {
@@ -28,7 +17,7 @@ import {
   membersGameData,
   ordersOverviewDataonPending,
 } from "./data";
-import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { TrophyIcon, CurrencyDollarIcon} from "@heroicons/react/24/solid";
 import { fetchGame, fetchPlayer } from "../api/apiFinance";
 import { PlayerInfo } from "./interface/PlayerInfo";
 import { useSearchParams } from "next/navigation";
@@ -145,8 +134,8 @@ export function Dashboard() {
               <Typography
                 variant="small"
                 className="flex items-center gap-1 font-normal text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}              >
-                <CheckCircleIcon strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
-                <strong>Day 1</strong> 
+               <TrophyIcon className="h-4 w-4 text-blue-gray-200" />
+<strong>Classement</strong>
               </Typography>
             </div>
          
@@ -198,10 +187,7 @@ export function Dashboard() {
             <Typography
               variant="small"
               className="flex items-center gap-1 font-normal text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            >
-              <ArrowUpIcon
-                strokeWidth={3}
-                className="h-3.5 w-3.5 text-green-500"
-              />
+              <CurrencyDollarIcon className="h-4 w-4 text-blue-gray-200" />            
               Liste de tous les ordres en attente
             </Typography>
           </CardHeader>
