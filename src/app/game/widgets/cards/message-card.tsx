@@ -17,12 +17,12 @@ export const MessageCard: React.FC<MessageCardProps> = ({ img, name, message, ac
           src={img}
           alt={name}
           variant="rounded"
-          className="shadow-lg shadow-blue-gray-500/25" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}        />
+          className="shadow-lg shadow-blue-gray-500/25" placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}        />
         <div>
-          <Typography variant="small" color="blue-gray" className="mb-1 font-semibold"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <Typography variant="small" color="blue-gray" className="mb-1 font-semibold"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             {name}
           </Typography>
-          <Typography className="text-xs font-normal text-blue-gray-400"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <Typography className="text-xs font-normal text-blue-gray-400"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             {message}
           </Typography>
         </div>

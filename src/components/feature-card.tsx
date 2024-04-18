@@ -12,15 +12,15 @@ interface FeatureCardProps {
 }
 export function FeatureCard({ icon: Icon, title, children }: FeatureCardProps) {
   return (
-    <Card placeholder="" color="transparent" shadow={false}  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-      <CardBody placeholder="" className="grid place-items-start px-0"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+    <Card placeholder="" color="transparent" shadow={false}  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
+      <CardBody placeholder="" className="grid place-items-start px-0"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
         <div className="mb-3 grid place-content-center rounded-lg text-left text-blue-gray-900">
           <Icon className="h-6 w-6" />
         </div>
-        <Typography placeholder="" variant="h5" color="blue-gray" className="mb-2"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <Typography placeholder="" variant="h5" color="blue-gray" className="mb-2"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           {title}
         </Typography>
-        <Typography placeholder="" className="text-gray-500 font-normal"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <Typography placeholder="" className="text-gray-500 font-normal"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           {children}
         </Typography>
       </CardBody>

@@ -9,7 +9,7 @@ import {
 interface ProfileInfoCardProps {
   title: string;
   description?: React.ReactNode;
-  details?: { [key: string]: React.ReactNode } | null | undefined;
+  details?: { [key: string]: React.ReactNode } | null | null;
   action?: React.ReactNode;
 }
 
@@ -21,22 +21,22 @@ export const ProfileInfoCard: React.FC<ProfileInfoCardProps> = ({
   action,
 }) => {
   return (
-    <Card color="transparent" shadow={false}  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+    <Card color="transparent" shadow={false}  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
       <CardHeader
         color="transparent"
         shadow={false}
         floated={false}
-        className="mx-0 mt-0 mb-4 flex items-center justify-between gap-4"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}      >
-        <Typography variant="h6" color="blue-gray"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        className="mx-0 mt-0 mb-4 flex items-center justify-between gap-4"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}      >
+        <Typography variant="h6" color="blue-gray"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           {title}
         </Typography>
         {action}
       </CardHeader>
-      <CardBody className="p-0"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+      <CardBody className="p-0"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
         {description && (
           <Typography
             variant="small"
-            className="font-normal text-blue-gray-500"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
+            className="font-normal text-blue-gray-500"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}          >
             {description}
           </Typography>
         )}
@@ -50,13 +50,13 @@ export const ProfileInfoCard: React.FC<ProfileInfoCardProps> = ({
                 <Typography
                   variant="small"
                   color="blue-gray"
-                  className="font-semibold capitalize"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                >
+                  className="font-semibold capitalize"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}                >
                   {el}:
                 </Typography>
                 {typeof details[el] === "string" ? (
                   <Typography
                     variant="small"
-                    className="font-normal text-blue-gray-500"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                  >
+                    className="font-normal text-blue-gray-500"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}                  >
                     {details[el]}
                   </Typography>
                 ) : (

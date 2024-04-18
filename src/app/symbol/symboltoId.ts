@@ -32,7 +32,7 @@ export const symbolToId = (symbol: string): string => {
   }
 
 
-  export const idToSymbol = (id: string): SymbolInfo | undefined => {
+  export const idToSymbol = (id: string): SymbolInfo | null => {
     switch (id) {
       case "1":
         return { id: "1", symbol: "AAPL", name: "Apple Inc." };
@@ -55,7 +55,7 @@ export const symbolToId = (symbol: string): string => {
       case "10":
         return { id: "10", symbol: "BA", name: "The Boeing Company" };
       default:
-        return undefined;
+        return null;
     }
   };
 

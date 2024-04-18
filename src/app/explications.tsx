@@ -46,13 +46,13 @@ export function Explications() {
           />
         </div>
         <div className="col-span-2 lg:pl-32">
-          <Typography placeholder="" variant="h2" color="blue-gray" className="mb-4"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <Typography placeholder="" variant="h2" color="blue-gray" className="mb-4"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             What is the Game ? 
           </Typography>
           <Typography
             placeholder=""
             variant="lead"
-            className="mb-5 max-w-lg px-4 text-left text-lg !text-gray-500 lg:px-0  "  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
+            className="mb-5 max-w-lg px-4 text-left text-lg !text-gray-500 lg:px-0  "  onPointerEnterCapture={null} onPointerLeaveCapture={null}          >
             Embark on your financial journey with an initial capital, strategically invest in favorable opportunities, and aim to outperform your competitors to accumulate wealth. 
           </Typography>
 

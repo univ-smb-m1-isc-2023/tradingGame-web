@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import { Game } from '../game/interface/Game';
 import CreatedGamesRow from './CreateRow';

@@ -34,7 +34,7 @@ const GraphDetails: React.FC<GraphDetailsProps> = ({ symbol, name }) => {
   }, [name, symbol]); // Add name and symbol to the dependency array
 
   return (
-    <div className="mb-48">
+    <div className="mb-32">
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -42,7 +42,7 @@ const GraphDetails: React.FC<GraphDetailsProps> = ({ symbol, name }) => {
           {statisticsChartsData.map((chartData, index) => (
             <StatisticsChart
               key={index}
-              width={1200}
+              width={1000}
               height={360}
               {...chartData}
               footer=""

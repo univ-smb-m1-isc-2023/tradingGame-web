@@ -21,13 +21,13 @@ export function SignUp() {
       </div>
       <div className="w-full lg:w-3/5 flex flex-col items-center justify-center">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <Typography variant="h2" className="font-bold mb-4" placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             Join Us Today
           </Typography>
           <Typography
             variant="paragraph"
             color="blue-gray"
-            className="text-lg font-normal"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
+            className="text-lg font-normal"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}          >
             Enter your email and password to register.
           </Typography>
         </div>
@@ -36,7 +36,7 @@ export function SignUp() {
             <Typography
               variant="small"
               color="blue-gray"
-              className="-mb-3 font-medium"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            >
+              className="-mb-3 font-medium"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}            >
               Your email
             </Typography>
             <Input
@@ -45,13 +45,13 @@ export function SignUp() {
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
-              }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}            />
+              }} onPointerEnterCapture={null} onPointerLeaveCapture={null} crossOrigin={null}            />
           </div>
           <Checkbox
             label={<Typography
               variant="small"
               color="gray"
-              className="flex items-center justify-start font-medium"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            >
+              className="flex items-center justify-start font-medium"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}            >
               I agree the&nbsp;
               <a
                 href="#"
@@ -60,8 +60,8 @@ export function SignUp() {
                 Terms and Conditions
               </a>
             </Typography>}
-            containerProps={{ className: "-ml-2.5" }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}          />
-          <Button className="mt-6" fullWidth  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            containerProps={{ className: "-ml-2.5" }} onPointerEnterCapture={null} onPointerLeaveCapture={null} crossOrigin={null}          />
+          <Button className="mt-6" fullWidth  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             Register Now
           </Button>
 
@@ -70,7 +70,7 @@ export function SignUp() {
               size="lg"
               color="white"
               className="flex items-center gap-2 justify-center shadow-md"
-              fullWidth  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            >
+              fullWidth  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}            >
               <svg
                 width="17"
                 height="16"
@@ -113,7 +113,7 @@ export function SignUp() {
               size="lg"
               color="white"
               className="flex items-center gap-2 justify-center shadow-md"
-              fullWidth  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            >
+              fullWidth  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}            >
               <img
                 src="/img/twitter-logo.svg"
                 height={24}
@@ -125,7 +125,7 @@ export function SignUp() {
           </div>
           <Typography
             variant="paragraph"
-            className="text-center text-blue-gray-500 font-medium mt-4"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
+            className="text-center text-blue-gray-500 font-medium mt-4"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}          >
             Already have an account?
             <Link href="/auth/sign-in" className="text-gray-900 ml-1">
               Sign in

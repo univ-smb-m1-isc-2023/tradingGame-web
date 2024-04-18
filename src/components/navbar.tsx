@@ -27,7 +27,7 @@ export function NavbarDefault() {
         as="li"
         variant="small"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}      >
+        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={null} onPointerLeaveCapture={null}      >
         <svg
           width="16"
           height="15"
@@ -50,7 +50,7 @@ export function NavbarDefault() {
         as="li"
         variant="small"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}      >
+        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={null} onPointerLeaveCapture={null}      >
         <svg
           width="16"
           height="17"
@@ -74,7 +74,7 @@ export function NavbarDefault() {
         as="li"
         variant="small"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}      >
+        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={null} onPointerLeaveCapture={null}      >
         <svg
           width="14"
           height="15"
@@ -96,7 +96,7 @@ export function NavbarDefault() {
         as="li"
         variant="small"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}      >
+        className="flex items-center gap-x-2 p-1 font-medium"  onPointerEnterCapture={null} onPointerLeaveCapture={null}      >
         <SiGithub size={16} />
         <a href="#" className="flex items-center">
           GitHub
@@ -106,18 +106,18 @@ export function NavbarDefault() {
   );
 
   return (
-    <Navbar placeholder="" className="w-full bg-blue-500 bg-opacity-0"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+    <Navbar placeholder="" className="w-full bg-blue-500 bg-opacity-0"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           placeholder=""
           as="a"
           href="#"
-          className="mr-4 cursor-pointer py-1.5 font-medium"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}        >
+          className="mr-4 cursor-pointer py-1.5 font-medium"  onPointerEnterCapture={null} onPointerLeaveCapture={null}        >
           Trading Game
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-1">
-          <Button placeholder="" variant="text" size="sm" className="hidden lg:inline-block"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <Button placeholder="" variant="text" size="sm" className="hidden lg:inline-block"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             <span>Log In</span>
           </Button>
           <Button
@@ -125,7 +125,7 @@ export function NavbarDefault() {
             placeholder=""
             variant="gradient"
             size="sm"
-            className="hidden lg:inline-block"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          >
+            className="hidden lg:inline-block"  onPointerEnterCapture={null} onPointerLeaveCapture={null}          >
                 <Link href="/login">
             <span>Sign in</span>
             </Link>
@@ -137,7 +137,7 @@ export function NavbarDefault() {
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
-          onClick={() => setOpenNav(!openNav)}  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}        >
+          onClick={() => setOpenNav(!openNav)}  onPointerEnterCapture={null} onPointerLeaveCapture={null}        >
           {openNav ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -174,10 +174,10 @@ export function NavbarDefault() {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button placeholder="" fullWidth variant="text" size="sm" className=""  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Button placeholder="" fullWidth variant="text" size="sm" className=""  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               <span>Log In</span>
             </Button>
-            <Button placeholder="" fullWidth variant="gradient" size="sm" className=""  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Button placeholder="" fullWidth variant="gradient" size="sm" className=""  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               <span>            <Link href="/signup">Go to Sign Up</Link></span>
             </Button>
           </div>

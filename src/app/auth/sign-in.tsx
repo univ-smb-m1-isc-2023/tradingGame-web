@@ -15,12 +15,12 @@ export function SignIn() {
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>Sign In</Typography>
-          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>Enter your email and password to Sign In.</Typography>
+          <Typography variant="h2" className="font-bold mb-4"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>Sign In</Typography>
+          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>Enter your email and password to Sign In.</Typography>
         </div>
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
           <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               Your email
             </Typography>
             <Input
@@ -29,8 +29,8 @@ export function SignIn() {
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
-              }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}            />
-            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+              }} onPointerEnterCapture={null} onPointerLeaveCapture={null} crossOrigin={null}            />
+            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               Password
             </Typography>
             <Input
@@ -40,13 +40,13 @@ export function SignIn() {
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
-              }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}            />
+              }} onPointerEnterCapture={null} onPointerLeaveCapture={null} crossOrigin={null}            />
           </div>
           <Checkbox
             label={<Typography
               variant="small"
               color="gray"
-              className="flex items-center justify-start font-medium"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+              className="flex items-center justify-start font-medium"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               I agree the&nbsp;
               <a
                 href="#"
@@ -55,8 +55,8 @@ export function SignIn() {
                 Terms and Conditions
               </a>
             </Typography>}
-            containerProps={{ className: "-ml-2.5" }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}          />
-          <Button className="mt-6" fullWidth  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            containerProps={{ className: "-ml-2.5" }} onPointerEnterCapture={null} onPointerLeaveCapture={null} crossOrigin={null}          />
+          <Button className="mt-6" fullWidth  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             Sign In
           </Button>
 
@@ -65,18 +65,18 @@ export function SignIn() {
               label={<Typography
                 variant="small"
                 color="gray"
-                className="flex items-center justify-start font-medium"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}              >
+                className="flex items-center justify-start font-medium"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}              >
                 Subscribe me to newsletter
               </Typography>}
-              containerProps={{ className: "-ml-2.5" }} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}            />
-            <Typography variant="small" className="font-medium text-gray-900"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+              containerProps={{ className: "-ml-2.5" }} onPointerEnterCapture={null} onPointerLeaveCapture={null} crossOrigin={null}            />
+            <Typography variant="small" className="font-medium text-gray-900"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               <a href="#">
                 Forgot Password
               </a>
             </Typography>
           </div>
           <div className="space-y-4 mt-8">
-            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_1156_824)">
                   <path d="M16.3442 8.18429C16.3442 7.64047 16.3001 7.09371 16.206 6.55872H8.66016V9.63937H12.9813C12.802 10.6329 12.2258 11.5119 11.3822 12.0704V14.0693H13.9602C15.4741 12.6759 16.3442 10.6182 16.3442 8.18429Z" fill="#4285F4" />
@@ -92,12 +92,12 @@ export function SignIn() {
               </svg>
               <span>Sign in With Google</span>
             </Button>
-            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
               <img src="/img/twitter-logo.svg" height={24} width={24} alt="" />
               <span>Sign in With Twitter</span>
             </Button>
           </div>
-          <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+          <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             Not registered?
             <Link href="/auth/sign-up" className="text-gray-900 ml-1">Create account</Link>
           </Typography>

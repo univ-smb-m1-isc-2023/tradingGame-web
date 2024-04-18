@@ -2,6 +2,7 @@
 
 import { Sidebar } from "./widgets/layout"; 
 import { Dashboard } from "./dashboard"
+import { Suspense } from 'react';
 
 export function DashboardHome() {
   // Assuming setOpenConfigurator and useMaterialTailwindController are being used somewhere
@@ -14,8 +15,9 @@ export function DashboardHome() {
         
         <div className="w-3/4 flex flex-col justify-center items-center"> {/* Changed flex to flex-col */}
   
-
+        <Suspense fallback={<div>Loading...</div>}>
           <Dashboard />
+        </Suspense>
         </div>
       </div>
     </>

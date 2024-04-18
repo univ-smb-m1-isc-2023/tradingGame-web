@@ -26,10 +26,10 @@ function Option({ icon: Icon, title, children }: OptionProps) {
                 <Icon className="text-gray-900 h-6 w-6" />
             </div>
             <div>
-                <Typography placeholder="" variant="h5" color="blue-gray" className="mb-2"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <Typography placeholder="" variant="h5" color="blue-gray" className="mb-2"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                     {title}
                 </Typography>
-                <Typography placeholder="" className="mb-2 md:w-10/12 font-normal !text-gray-500"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <Typography placeholder="" className="mb-2 md:w-10/12 font-normal !text-gray-500"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                     {children}
                 </Typography>
             </div>
@@ -40,7 +40,7 @@ function Option({ icon: Icon, title, children }: OptionProps) {
 export function Explications_games() {
     return (
         <section className="w-full max-w-4xl mx-auto flex flex-col items-center px-4 py-10">
-            <Typography placeholder="" variant="h1" className="text-center mb-2" color="blue-gray"  onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Typography placeholder="" variant="h1" className="text-center mb-2" color="blue-gray"  onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                 Variety of Gaming Experiences
             </Typography>
             <div className="mt-8">

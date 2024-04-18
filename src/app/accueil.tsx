@@ -12,8 +12,8 @@ function Accueil() {
             variant="h1"
             color="gray"
             className="md:max-w-full lg:max-w-8xl font-extrabold text-5xl leading-tight"
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
+            onPointerEnterCapture={null}
+            onPointerLeaveCapture={null}
           >
             Be the Master of Trading
           </Typography>
@@ -23,8 +23,8 @@ function Accueil() {
             variant="lead"
             color="white"
             className="mt-6 mb-10 w-full md:max-w-full lg:max-w-5xl text-lg leading-relaxed"
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
+            onPointerEnterCapture={null}
+            onPointerLeaveCapture={null}
           >
             Elevate your trading skills and conquer the global stage. Challenge
             friends and competitors worldwide. Outwit opponents, navigate
@@ -37,8 +37,8 @@ function Accueil() {
               variant="gradient"
               color="white"
               className="py-2 px-6 rounded-md text-lg font-semibold"
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
+              onPointerEnterCapture={null}
+              onPointerLeaveCapture={null}
             >
               PLAY FREE
             </Button>

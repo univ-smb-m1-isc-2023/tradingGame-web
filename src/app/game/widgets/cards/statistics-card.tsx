@@ -24,25 +24,25 @@ export const StatisticsCard: React.FC<StatisticsCardProps> = ({
   footer,
 }) => {
   return (
-    <Card className="border border-blue-gray-100 shadow-sm"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+    <Card className="border border-blue-gray-100 shadow-sm"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
       <CardHeader
         variant="gradient"
         color={"blue"}
         floated={false}
         shadow={false}
-        className="absolute grid h-12 w-12 place-items-center"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}      >
+        className="absolute grid h-12 w-12 place-items-center"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}      >
         {icon}
       </CardHeader>
-      <CardBody className="p-4 text-right"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-        <Typography variant="small" className="font-normal text-blue-gray-600"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+      <CardBody className="p-4 text-right"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
+        <Typography variant="small" className="font-normal text-blue-gray-600"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           {title}
         </Typography>
-        <Typography variant="h4" color="blue-gray"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <Typography variant="h4" color="blue-gray"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           {value}
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-blue-gray-50 p-4"  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+        <CardFooter className="border-t border-blue-gray-50 p-4"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           {footer}
         </CardFooter>
       )}
