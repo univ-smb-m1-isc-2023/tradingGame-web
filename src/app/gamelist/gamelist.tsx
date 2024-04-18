@@ -13,7 +13,7 @@ export default function Gamelist() {
 
   useEffect(() => {
     const playerID = searchParams.get("playerID");
-    console.log("playerID",playerID)
+    //console.log("playerID",playerID)
     const fetchPlayerInfo = async () => {
       try {
         if (playerID!=null) { // Check if playerID is available
