@@ -13,16 +13,12 @@ export default function Gamelist() {
 
   useEffect(() => {
     const playerID = searchParams.get("playerID");
-
+    console.log("playerID",playerID)
     const fetchPlayerInfo = async () => {
       try {
-        if (playerID) { // Check if playerID is available
+        if (playerID!=null) { // Check if playerID is available
           const response = await fetchPlayer(playerID);
-          if (!response.ok) {
-            throw new Error('Failed to fetch player info');
-          }
-          const data = await response.json();
-          setPlayerInfo(data); // Set playerInfo state
+          setPlayerInfo(response); // Set playerInfo state
         }
       } catch (error) {
         console.error('Error fetching player info:', error);
