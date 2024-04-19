@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trading Game
 
-## Getting Started
+## But : 
 
-First, run the development server:
+* Une platform de simulation boursière.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Participants Groupe
+* 1- Yvann
+* 2- Tom
+* 3- Gor
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Fonctionnalités : 
+ 
+ * application multi-utilisateur (s'enregistrer / supprimer son compte)
+ * Possibilité pour un admin de créer un ou plusieurs Jeux d'investissement (durée en nb de jours, montant initiale du portefeuille, frais de transactions, nombre de portefeuilles max par joueur)
+ * Tous les jours ouvré la platform doit récupérer les cours de la veille et valoriser les portefeuilles
+ * la platform doit supporter tous les ordres de bourses valides (https://www.boursier.com/guide/devenir-trader-en-bourse/type-ordres-de-bourse)
+ * les ordres sont évalués une fois les données de la veille actualisées  
+ * la homepage anonyme comporte le classement des tournois en cours
+ * la homepage du joueur lui permet de visualiser les positions pour un jeu / portefeuille 
+ * hors scope : on ne tient pas compte de la volatilité ni de la vente a découvert de titres
 
-To learn more about Next.js, take a look at the following resources:
+ 
+ 
+## si 3 éme membre
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ * le jeu de simulation peut être lancer en 2 modes : soit live (décrit plus haut) soit historisé : le jeu commence a une date dans le passé
+ * a cette fin les données historiques doivent être préchargé en base (intégralité actions euro-next paris), et le jeu configurer pour tourner sur une base de temps. (1 jours = 10 minutes)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# https://tradinggame-api.oups.net
