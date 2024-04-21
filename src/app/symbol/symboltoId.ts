@@ -14,12 +14,10 @@ export const symbolToId = (symbol: string): string => {
         return "6";
       case "NVDA":
         return "7";
-      case "FB":
+      case "NDAQ":
         return "8";
-      case "SHOP":
-        return "9";
       case "BA":
-        return "10";
+        return "9";
       default:
         return "";
     }
@@ -49,11 +47,9 @@ export const symbolToId = (symbol: string): string => {
       case "7":
         return { id: "7", symbol: "NVDA", name: "NVIDIA Corporation" };
       case "8":
-        return { id: "8", symbol: "FB", name: "Meta Platforms, Inc." };
+        return { id: "8", symbol: "NDAQ", name: "Nasdaq, Inc." };
       case "9":
-        return { id: "9", symbol: "SHOP", name: "Shopify Inc." };
-      case "10":
-        return { id: "10", symbol: "BA", name: "The Boeing Company" };
+        return { id: "9", symbol: "BA", name: "The Boeing Company" };
       default:
         return null;
     }
@@ -67,8 +63,7 @@ export const symbolToId = (symbol: string): string => {
     { id: "5", symbol: "MSFT", name: "Microsoft Corporation" },
     { id: "6", symbol: "NFLX", name: "Netflix, Inc." },
     { id: "7", symbol: "NVDA", name: "NVIDIA Corporation" },
-    { id: "8", symbol: "FB", name: "Meta Platforms, Inc." },
-    { id: "9", symbol: "SHOP", name: "Shopify Inc." },
-    { id: "10", symbol: "BA", name: "The Boeing Company" }
+    { id: "8", symbol: "NDAQ", name: "Meta Platforms, Inc." },
+    { id: "9", symbol: "BA", name: "The Boeing Company" }
   ];
   
