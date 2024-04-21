@@ -1,6 +1,5 @@
 import { chartsConfig } from "../configs";
 import fetchFinancialData from "../../api/apiFinance";
-import {symbolToId} from "../../symbol/symboltoId" 
 const getData = async (symbol: string,startDate : Date, endDate : Date) => {
   try {
     const data = await fetchFinancialData(symbol,startDate,endDate);

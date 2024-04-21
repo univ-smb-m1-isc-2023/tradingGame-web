@@ -22,8 +22,15 @@ export default function GameTable({ playerInfo }: GameTableProps) {
                   <span className="mt-1 font-medium text-secondary-dark text-lg/normal">My Games </span>
                 </h3>
                 <div className="relative flex flex-wrap items-center my-2">
-                  <a href="/game" className="inline-block text-[.925rem] font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-150 ease-in-out text-light-inverse bg-light-dark border-light shadow-none border-0 py-2 px-5 hover:bg-secondary active:bg-light focus:bg-light"> Filter </a>
-                </div>
+                  <button
+                    onClick={() => {
+                      window.location.href = `../createNewGame?playerID=${playerInfo.id}`;
+                    }}
+                    className="inline-block text-[.925rem] font-medium leading-normal text-center align-middle cursor-pointer rounded-2xl transition-colors duration-150 ease-in-out text-light-inverse bg-light-dark border-light shadow-none border-0 py-2 px-5 hover:bg-secondary active:bg-light focus:bg-light"
+                  >
+                    Create new Game
+                  </button>              </div>
+
               </div>
               {/* end card header */}
               {/* card body  */}
@@ -45,7 +52,7 @@ export default function GameTable({ playerInfo }: GameTableProps) {
                     <tbody>
                       {/* Row  */}
                       {playerInfo.createdGames.map((game) => (
-                        <GameRowComponent idGame={game.id} />
+                        <GameRowComponent idGame={game.id} idPlayer={playerInfo.id} />
                       ))}
                     </tbody>
                   </table>

@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { Game } from '../game/interface/Game';
+import { PlayerInfo } from '../game/interface/PlayerInfo';
 
-const CreatedGamesRow: React.FC<{ game: Game }> = ({ game }) => {
+const CreatedGamesRow: React.FC<{ game: Game, playerID : number }> = ({ game, playerID}) => {
   return (
     <tr className="border-b border-dashed last:border-b-0">
       <td className="p-3 pl-0">
@@ -12,7 +13,7 @@ const CreatedGamesRow: React.FC<{ game: Game }> = ({ game }) => {
             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/96/Meme_Man_on_transparent_background.webp/220px-Meme_Man_on_transparent_background.webp.png" className="w-[50px] h-[50px] inline-block shrink-0 rounded-2xl" alt="" />
           </div>
           <div className="flex flex-col justify-start">
-            <a href={`/game?gameID=${game.id}`} className="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary">{game.title}</a>
+            <a href={`/game?playerID=${playerID}&gameID=${game.id}`} className="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary">{game.title}</a>
           </div>
         </div>
       </td>

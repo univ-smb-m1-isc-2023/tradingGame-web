@@ -1,15 +1,14 @@
 "use client";
 
-
 import { Suspense } from "react";
-import ActionsDetails from "./actionDetails"
-export function detailsPage() {
+import  PageHistoricalFetched  from "./pageHistoricalfetched";
+
+export function DetailsorderPage() {
   // Assuming setOpenConfigurator and useMaterialTailwindController are being used somewhere
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-
-     <ActionsDetails/>
+     <PageHistoricalFetched/>
      </Suspense>
 
     </>
@@ -17,4 +16,4 @@ export function detailsPage() {
 }
 
 
-export default detailsPage;
+export default DetailsorderPage;

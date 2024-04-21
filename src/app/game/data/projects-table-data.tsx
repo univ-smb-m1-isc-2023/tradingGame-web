@@ -1,6 +1,4 @@
-import { fetchPlayer } from "@/app/api/apiFinance";
 import { Game } from "../interface/Game";
-import { PlayerInfo } from "../interface/PlayerInfo";
 
 export const membersGameData = async (game: Game) => {
   const sortedWallets = game.wallets.slice().sort((a, b) => b.balance - a.balance);

@@ -2,11 +2,16 @@
 
 import React, { useState } from 'react';
 import GraphDetails from './graph';
-import { DialogAchat } from './dialogAchat';
-import { DialogVente } from './dialogVente';
-import { idToSymbol } from '@/app/symbol/symboltoId';
+import { idToSymbol, symbolList } from '@/app/symbol/symboltoId';
+import { PlayerInfo } from '../interface/PlayerInfo';
+import { Game } from '../interface/Game';
 
-const SymbolList: React.FC = () => {
+interface SymbolList {
+  player: PlayerInfo;
+  game: Game;
+}
+
+const SymbolList: React.FC<SymbolList> = ({player,game}) => {
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null); // Initialize selectedSymbol state
 
   // Function to handle item click
@@ -16,22 +21,22 @@ const SymbolList: React.FC = () => {
   };
 
   // Generate dynamic items list
-  const items = [];
-  for (let i = 1; i <= 10; i++) {
-    const { symbol, name } = idToSymbol(i.toString()) || {}; // Get the corresponding name and symbol for the ID
+  const items = symbolList.map((item, index) => {
+    const { symbol, name } = idToSymbol(item.id) || {};
     if (symbol && name) {
-      items.push(
+      return (
         <div
-          key={i}
+          key={index}
           role="button"
           className={`flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 ${selectedSymbol === symbol ? 'bg-green-500' : ''}`}
           onClick={() => handleItemClick(symbol, name)}
         >
-          {symbol}
+          {name}
         </div>
       );
     }
-  }
+    return null; // Return null if either symbol or name is not available
+  });
 
   return (
     <div className="flex gap-4">
@@ -40,7 +45,7 @@ const SymbolList: React.FC = () => {
           {items}
         </nav>
       </div>
-      {selectedSymbol && <GraphDetails symbol={selectedSymbol} name={selectedSymbol} />}
+      {selectedSymbol && <GraphDetails symbol={selectedSymbol} name={selectedSymbol} player={player} game={game} />}
       {/* Render GraphDetails only if a symbol is selected */}
     </div>
   );

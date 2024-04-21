@@ -1,6 +1,8 @@
 "use client";
 
 import axios from "axios";
+import { StockOrderBody } from "../game/interface/StockOrderBody";
+import { GameBody } from "../game/interface/GameBody";
 
 const fetchFinancialData = async ( symbol: any, startTime : any, endTime: any) => {
   try {
@@ -47,3 +49,88 @@ export const fetchPlayer = async (idPlayer : string)=>{
   }
 }
 
+
+export const fetchSymbol = async ()=>{
+  try {
+    const response = await fetch(`https://tradinggame-api.oups.net/stock`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch Game info');
+    }
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching actions:', error);
+  }
+}
+
+export const fetchAllPlayers= async ()=>{
+  try {
+    const response = await fetch(`https://tradinggame-api.oups.net/player`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch Game info');
+    }
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching actions:', error);
+  }
+}
+
+export const fetchActions= async (idWallet : number)=>{
+  try {
+    const response = await fetch(`https://tradinggame-api.oups.net/wallet/${idWallet}/stock_value`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch actions');
+    }
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching actions :', error);
+  }
+}
+
+export const addOrder = async (order : StockOrderBody) =>{
+  try {
+    // Effectuer la requête POST
+    const response = await axios.post('https://tradinggame-api.oups.net/wallet/stock_order', order);
+
+    // Traiter la réponse
+    console.log('Réponse de l\'API:', response.data);
+    
+    // Retourner les données de réponse si nécessaire
+    return response.data;
+
+  } catch (error) {
+    // Gérer les erreurs
+    console.error('Erreur lors de la requête POST:', error);
+    
+    // Retourner une erreur ou null en fonction de vos besoins
+    return null;
+  }
+
+}
+
+
+
+
+export const fetchcreateGame = async (game : GameBody) =>{
+  try {
+    
+    // Effectuer la requête POST
+    const response = await axios.post('https://tradinggame-api.oups.net/game',game);
+
+    // Traiter la réponse
+    console.log('Réponse de l\'API:', response.data);
+    
+    // Retourner les données de réponse si nécessaire
+    return response.data;
+
+  } catch (error) {
+    // Gérer les erreurs
+    console.error('Erreur lors de la requête POST:', error);
+    
+    // Retourner une erreur ou null en fonction de vos besoins
+    return null;
+  }
+
+}

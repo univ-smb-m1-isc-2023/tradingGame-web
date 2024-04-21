@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   Typography,
@@ -25,25 +25,52 @@ import {
 import {
   ChevronRightIcon,
   ChevronDownIcon,
-  CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
+import { Game } from "../../interface/Game";
+import { PlayerInfo } from "../../interface/PlayerInfo";
+import { findWallet } from "../../data";
+import { Wallet, WalletPlayer } from "../../interface/Wallet";
  
-export function Sidebar() {
+export function Sidebar({ player, game }: { player: PlayerInfo|null, game: Game|null }) {
   const [open, setOpen] = React.useState(0);
-  const [openAlert, setOpenAlert] = React.useState(true);
- 
+  const [myWallet, setWallet] = useState<WalletPlayer | null>(null);
+
   const handleOpen = (value: React.SetStateAction<number>) => {
     setOpen(open === value ? 0 : value);
   };
+
+  useEffect(() => {
+    const fetchWallet = async () => {
+      try {
+        if(game!= null && player != null){
+          const wallet = await findWallet(game.id.toLocaleString(), player)
+          if(wallet!=null){
+            setWallet(wallet)
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchWallet(); // Call fetchData directly inside useEffect
+  
+  }, []); // Empty dependency array to run once on mount
  
+
   return (
+   
     <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 h-full"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-      <div className="mb-2 flex items-center gap-4 p-4">
-        <img src="https://media.tenor.com/K_8abXDQ5wsAAAAe/stonks-up.png" alt="brand" className="h-12 w-12" />
-        <Typography variant="h5" color="blue-gray"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-          Yvann
-        </Typography>
-      </div>
+      {game && player && ( // Check if both game and player are not null
+        <>
+      <div className="mb-4 flex items-center gap-4 p-4 bg-white rounded-lg shadow-md border border-gray-200">
+        <img src="https://media.tenor.com/K_8abXDQ5wsAAAAe/stonks-up.png" alt="brand" className="h-12 w-12 rounded-full" />
+        
+        <div className="flex flex-col">
+            <h3 className="text-lg font-semibold text-blue-gray-700">{player?.username}</h3>
+            <p className="text-l font-bold text-blue-gray-700">{myWallet?.balance.toFixed(2)}€</p>
+        </div>
+    </div>
       <List  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
         <Accordion
           open={open === 1}
@@ -66,14 +93,17 @@ export function Sidebar() {
                 <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                <a href="./game?gameID=1&playerID=2" className="text-blue-gray-600 hover:text-blue-gray-800">Dashboard</a>
-              </ListItem>
+                <a href={`../game?gameID=${game.id}&playerID=${player.id}`} className="text-blue-gray-600 hover:text-blue-gray-800">
+                  Dashboard
+                </a>
+                  </ListItem>
               <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                 <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                <a href="./game/details?gameID=1&playerID=2" className="text-blue-gray-600 hover:text-blue-gray-800">Acheter une action</a>
-
+                <a href={`../game/details?gameID=${game.id}&playerID=${player.id}`} className="text-blue-gray-600 hover:text-blue-gray-800">
+                Acheter une action
+              </a>
               </ListItem>
             </List>
           </AccordionBody>
@@ -89,7 +119,7 @@ export function Sidebar() {
                 <ShoppingBagIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Typography color="blue-gray" className="mr-auto font-normal"  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-              <a href="https://your-website-url.com" className="text-blue-gray-600 hover:text-blue-gray-800">Mes ordres</a>
+              Ordre 
               </Typography>
             </AccordionHeader>
           </ListItem>
@@ -99,28 +129,30 @@ export function Sidebar() {
                 <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                <a href="./game?" className="text-blue-gray-600 hover:text-blue-gray-800">Mon Historique</a>
-
+                <a href={`../game/checkorder?gameID=${game.id}&playerID=${player.id}`} className="text-blue-gray-600 hover:text-blue-gray-800">
+                Mes Ordres
+                </a>
               </ListItem>
               <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                 <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Historiques
+                <a href={`../game/checkhistorical?gameID=${game.id}&playerID=${player.id}`} className="text-blue-gray-600 hover:text-blue-gray-800">
+                Mon historique
+                </a>
+              </ListItem>
+              <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
+                <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
+                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                </ListItemPrefix>
+                <a href={`../game/checkcurrentactions?gameID=${game.id}&playerID=${player.id}`} className="text-blue-gray-600 hover:text-blue-gray-800">
+                Mes actions
+                </a>
               </ListItem>
             </List>
           </AccordionBody>
         </Accordion>
         <hr className="my-2 border-blue-gray-50" />
-        <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-          <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Menu
-          <ListItemSuffix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-            <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-          </ListItemSuffix>
-        </ListItem>
         <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             <UserCircleIcon className="h-5 w-5" />
@@ -140,7 +172,12 @@ export function Sidebar() {
           Log Out
         </ListItem>
       </List>
-    
+
+    </>
+)}
     </Card>
+    
   );
+  
+  
 }

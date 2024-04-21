@@ -2,14 +2,15 @@
 
 
 import { Suspense } from "react";
-import ActionsDetails from "./actionDetails"
+import CreateNewGame from "./createNewGame";
+
 export function detailsPage() {
   // Assuming setOpenConfigurator and useMaterialTailwindController are being used somewhere
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
 
-     <ActionsDetails/>
+     <CreateNewGame/>
      </Suspense>
 
     </>

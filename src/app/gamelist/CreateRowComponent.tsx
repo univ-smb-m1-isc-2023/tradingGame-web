@@ -7,9 +7,10 @@ import { fetchGame } from '../api/apiFinance';
 
 interface GameRowComponentProps {
     idGame: number;
+    idPlayer : number;
   }
   
-  const GameRowComponent: React.FC<GameRowComponentProps> = ({ idGame }) => {
+  const GameRowComponent: React.FC<GameRowComponentProps> = ({ idGame, idPlayer}) => {
     const [gameInfo, setGameInfo] = useState<Game | null>(null); // Set initial value as null
   
   
@@ -29,7 +30,7 @@ interface GameRowComponentProps {
 
   return (
     <>
-      {gameInfo && <CreatedGamesRow game={gameInfo} />}
+      {gameInfo && <CreatedGamesRow game={gameInfo} playerID={idPlayer} />}
     </>
   );
 };

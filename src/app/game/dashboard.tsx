@@ -18,14 +18,13 @@ import {
   ordersOverviewDataonPending,
 } from "./data";
 import { TrophyIcon, CurrencyDollarIcon} from "@heroicons/react/24/solid";
-import { fetchGame, fetchPlayer } from "../api/apiFinance";
 import { useSearchParams } from "next/navigation";
 import { symbolList } from "../symbol/symboltoId";
+import { PlayerInfo } from "./interface/PlayerInfo";
+import { Game } from "./interface/Game";
 
 
-export function Dashboard() {
-  // const [playerInfo, setPlayerInfo] = useState<PlayerInfo | null>(null); // Set initial value as null
-  // const [gameInfo, setGameInfo] = useState<Game | null>(null); // Set initial value as null
+export function Dashboard({ player, game }: { player: PlayerInfo|null, game: Game|null }) {  // const [gameInfo, setGameInfo] = useState<Game | null>(null); // Set initial value as null
 
   const searchParams = useSearchParams();
   const [membersGame, setMembersGame] = useState<any[]>([]); // Set initial value as null
@@ -38,29 +37,17 @@ export function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const playerID = searchParams.get("playerID");
-        const gameID = searchParams.get("gameID");
-        let gameResponse = null
-        let playerResponse = null
-        if (playerID!=null) {
-          playerResponse = await fetchPlayer(playerID);
-          //setPlayerInfo(playerResponse);
-        }
-
-        if (gameID!=null) {
-          gameResponse = await fetchGame(gameID);
-          //setGameInfo(gameResponse)
-        }
+      
   
-        if (gameResponse && gameID && playerResponse) {
+        if (game  && player ) {
           const listOfSymbol = symbolList.slice(0, 3);
-          const data = await Promise.all(listOfSymbol.map(symbol => fetchstatisticsChartData(symbol.name, symbol.symbol, gameResponse?.initialDate, gameResponse?.currentDate)));
+          const data = await Promise.all(listOfSymbol.map(symbol => fetchstatisticsChartData(symbol.name, symbol.symbol, game?.initialDate, game?.currentDate)));
           setStatisticsChartsData(data);
-          const dataCard = await FetchStatisticsCardsData(listOfSymbol,gameResponse.currentDate)
+          const dataCard = await FetchStatisticsCardsData(listOfSymbol,game.currentDate)
           setstatisticsCardsData(dataCard)
-          const dataMembers = await membersGameData(gameResponse)
+          const dataMembers = await membersGameData(game)
           setMembersGame(dataMembers)
-          const dataPendingOrders = ordersOverviewDataonPending(gameID,playerResponse)
+          const dataPendingOrders = await  ordersOverviewDataonPending(game.id.toLocaleString(),player)
           setordersOverviewData(dataPendingOrders)
           setLoading(false); // Move setLoading(false) inside the fetchData function
         }
