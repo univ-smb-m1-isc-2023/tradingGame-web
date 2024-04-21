@@ -1,10 +1,8 @@
     "use client";
 
-    import { Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
+    import { CardBody, CardHeader, Typography } from "@material-tailwind/react";
     import React, { useEffect, useState } from "react";
     import { ordersOverviewDataonPending } from "../data";
-    import { fetchGame, fetchPlayer } from "@/app/api/apiFinance";
-    import { useSearchParams } from "next/navigation";
     import { Game } from "../interface/Game";
     import { PlayerInfo } from "../interface/PlayerInfo";
 import { CurrencyDollarIcon } from "@heroicons/react/24/solid";

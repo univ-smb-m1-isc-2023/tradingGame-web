@@ -89,6 +89,21 @@ export const fetchActions= async (idWallet : number)=>{
   }
 }
 
+
+export const fetchAllGames= async ()=>{
+  try {
+    const response = await fetch(`https://tradinggame-api.oups.net/game`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch actions');
+    }
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching actions :', error);
+  }
+}
+
+
 export const addOrder = async (order : StockOrderBody) =>{
   try {
     // Effectuer la requête POST
