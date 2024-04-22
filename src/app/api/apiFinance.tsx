@@ -3,150 +3,114 @@
 import axios from "axios";
 import { StockOrderBody } from "../game/interface/StockOrderBody";
 import { GameBody } from "../game/interface/GameBody";
+import {
+  axiosGetWithToken,
+  axiosPostWithToken,
+  base_url,
+  fetchWithToken,
+  fetchWithTokenNoOption,
+} from "@/utils/UserGestion";
 
-const fetchFinancialData = async ( symbol: any, startTime : any, endTime: any) => {
-  try {
-    const url =    `https://tradinggame-api.oups.net/stock/${symbol}/${startTime}/${endTime}`
-    console.log(url)
-    const response = await axios.get(
-      url
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
-  }
+const fetchFinancialData = async (
+  symbol: any,
+  startTime: any,
+  endTime: any
+) => {
+  const url = base_url + `/stock/${symbol}/${startTime}/${endTime}`;
+
+  return axiosGetWithToken(url);
 };
 
 export default fetchFinancialData;
 
-
-export const fetchGame = async (idGame : string )=>{
+export const fetchGame = async (idGame: string) => {
   try {
-    const response = await fetch(`https://tradinggame-api.oups.net/game/${idGame}`);
+    const response = await fetchWithTokenNoOption(base_url + `/game/${idGame}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch Game info');
+      throw new Error("Failed to fetch Game info");
     }
     const data = await response.json();
-    return data
+    return data;
   } catch (error) {
-    console.error('Error fetching Game info:', error);
+    console.error("Error fetching Game info:", error);
   }
+};
 
-
-}
-
-export const fetchPlayer = async (idPlayer : string)=>{
+export const fetchPlayer = async (idPlayer: string) => {
   try {
-    const response = await fetch(`https://tradinggame-api.oups.net/player/${idPlayer}`);
+    const response = await fetchWithTokenNoOption(
+      base_url + `/player/${idPlayer}`
+    );
     if (!response.ok) {
-      throw new Error('Failed to fetch Game info');
+      throw new Error("Failed to fetch Game info");
     }
     const data = await response.json();
-    return data
+    return data;
   } catch (error) {
-    console.error('Error fetching Player info:', error);
+    console.error("Error fetching Player info:", error);
   }
-}
+};
 
-
-export const fetchSymbol = async ()=>{
+export const fetchSymbol = async () => {
   try {
-    const response = await fetch(`https://tradinggame-api.oups.net/stock`);
+    const response = await fetchWithTokenNoOption(base_url + `/stock`);
     if (!response.ok) {
-      throw new Error('Failed to fetch Game info');
+      throw new Error("Failed to fetch Game info");
     }
     const data = await response.json();
-    return data
+    return data;
   } catch (error) {
-    console.error('Error fetching actions:', error);
+    console.error("Error fetching actions:", error);
   }
-}
+};
 
-export const fetchAllPlayers= async ()=>{
+export const fetchAllPlayers = async () => {
   try {
-    const response = await fetch(`https://tradinggame-api.oups.net/player`);
+    const response = await fetchWithTokenNoOption(base_url + `/player`);
     if (!response.ok) {
-      throw new Error('Failed to fetch Game info');
+      throw new Error("Failed to fetch Game info");
     }
     const data = await response.json();
-    return data
+    return data;
   } catch (error) {
-    console.error('Error fetching actions:', error);
+    console.error("Error fetching actions:", error);
   }
-}
+};
 
-export const fetchActions= async (idWallet : number)=>{
+export const fetchActions = async (idWallet: number) => {
   try {
-    const response = await fetch(`https://tradinggame-api.oups.net/wallet/${idWallet}/stock_value`);
+    const response = await fetchWithTokenNoOption(
+      base_url + `/wallet/${idWallet}/stock_value`
+    );
     if (!response.ok) {
-      throw new Error('Failed to fetch actions');
+      throw new Error("Failed to fetch actions");
     }
     const data = await response.json();
-    return data
+    return data;
   } catch (error) {
-    console.error('Error fetching actions :', error);
+    console.error("Error fetching actions :", error);
   }
-}
+};
 
-
-export const fetchAllGames= async ()=>{
+export const fetchAllGames = async () => {
   try {
-    const response = await fetch(`https://tradinggame-api.oups.net/game`);
+    const response = await fetch(base_url + `/game`);
     if (!response.ok) {
-      throw new Error('Failed to fetch actions');
+      throw new Error("Failed to fetch actions");
     }
     const data = await response.json();
-    return data
+    return data;
   } catch (error) {
-    console.error('Error fetching actions :', error);
+    console.error("Error fetching actions :", error);
   }
-}
+};
 
+export const addOrder = async (order: StockOrderBody) => {
+  axiosPostWithToken(base_url + "/wallet/stock_order", order);
+};
 
-export const addOrder = async (order : StockOrderBody) =>{
-  try {
-    // Effectuer la requête POST
-    const response = await axios.post('https://tradinggame-api.oups.net/wallet/stock_order', order);
-
-    // Traiter la réponse
-    console.log('Réponse de l\'API:', response.data);
-    
-    // Retourner les données de réponse si nécessaire
-    return response.data;
-
-  } catch (error) {
-    // Gérer les erreurs
-    console.error('Erreur lors de la requête POST:', error);
-    
-    // Retourner une erreur ou null en fonction de vos besoins
-    return null;
-  }
-
-}
-
-
-
-
-export const fetchcreateGame = async (game : GameBody) =>{
-  try {
-    
-    console.log(game)
-    // Effectuer la requête POST
-    const response = await axios.post('https://tradinggame-api.oups.net/game',game);
-
-    // Traiter la réponse
-    console.log('Réponse de l\'API:', response.data);
-    
-    // Retourner les données de réponse si nécessaire
-    return response.data;
-
-  } catch (error) {
-    // Gérer les erreurs
-    console.error('Erreur lors de la requête POST:', error);
-    
-    // Retourner une erreur ou null en fonction de vos besoins
-    return null;
-  }
-
-}
+export const fetchcreateGame = async (game: GameBody) => {
+  //console.log(game);
+  // Effectuer la requête POST
+  axiosPostWithToken(base_url + "/game", game);
+};

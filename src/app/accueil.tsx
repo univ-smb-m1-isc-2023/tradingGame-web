@@ -11,7 +11,7 @@ function Accueil() {
             placeholder=""
             variant="h1"
             color="gray"
-            className="md:max-w-full lg:max-w-8xl font-extrabold text-5xl leading-tight"
+            className="md:max-w-full lg:max-w-8xl font-extrabold text-5xl leading-tight "
             onPointerEnterCapture={null}
             onPointerLeaveCapture={null}
           >
