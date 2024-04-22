@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
-export const base_url ="http://localhost:8080" //"https://tradinggame-api.oups.net";
+export const base_url ="https://tradinggame-api.oups.net"; //"http://localhost:8080" 
 
 const tokentmp = localStorage.getItem('token');
 let token = ""
