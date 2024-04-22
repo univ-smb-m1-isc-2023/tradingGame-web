@@ -13,6 +13,7 @@ import {
   AccordionHeader,
   AccordionBody,
   Alert,
+  
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
@@ -21,6 +22,9 @@ import {
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
+  InformationCircleIcon,
+  LockClosedIcon
+  
 } from "@heroicons/react/24/solid";
 import {
   ChevronRightIcon,
@@ -155,21 +159,23 @@ export function Sidebar({ player, game }: { player: PlayerInfo|null, game: Game|
         <hr className="my-2 border-blue-gray-50" />
         <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-            <UserCircleIcon className="h-5 w-5" />
+            <InformationCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Profile
+          Information
         </ListItem>
-        <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-          <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
+    
         <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
           <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
           Log Out
+        </ListItem>
+
+        <ListItem  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
+          <ListItemPrefix  placeholder={null} onPointerEnterCapture={null} onPointerLeaveCapture={null}>
+            <LockClosedIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Delete account
         </ListItem>
       </List>
 

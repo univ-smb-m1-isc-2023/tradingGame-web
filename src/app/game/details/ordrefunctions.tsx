@@ -28,7 +28,7 @@ export async function ordreAchat(player : PlayerInfo , game : Game, MarketOrder 
             type: type,
             price: Price, // Remplacez par le prix réel
             quantity: quantity, // Remplacez par la quantité réelle
-            expirationGameDate: '2024-04-20T12:00:00Z', // Remplacez par la date réelle
+            expirationGameDate: '3500-04-20T12:00:00Z', // Remplacez par la date réelle
             walletId: wallet.id.toLocaleString(), // Remplacez par l'ID de votre portefeuille
             stockValueId: stockId, // Remplacez par l'ID de la valeur d'action
         };

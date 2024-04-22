@@ -63,7 +63,7 @@ export function Dashboard({ player, game }: { player: PlayerInfo | null, game: G
         const dataMembers = await membersGameData(game)
         setMembersGame(dataMembers)
         const dataPendingOrders = await ordersOverviewDataonPending(game.id.toLocaleString(), player)
-        setordersOverviewData(dataPendingOrders)
+        setordersOverviewData(dataPendingOrders || []);
         setLoading(false); // Move setLoading(false) inside the fetchData function
       }
 
@@ -86,10 +86,40 @@ export function Dashboard({ player, game }: { player: PlayerInfo | null, game: G
 
   return (
     <div className="mt-12">
-      <div style={{ textAlign: 'center' }}>
-        <button style={{ margin: '0 5px' }} onClick={handlePrevious}>Previous</button>
-        <button style={{ margin: '0 5px' }} onClick={handleNext}>Next</button>
+   
+
+      <div className="bg-white rounded-lg shadow-md p-6">
+      <h2 className="text-xl font-semibold mb-4">{game?.title}</h2>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-600">Initial Date</h3>
+          <p>{game?.initialDate}</p>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold text-gray-600">Current Date</h3>
+          <p>{game?.currentDate}</p>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold text-gray-600">Final Date</h3>
+          <p>{game?.finalDate}</p>
+        </div>
       </div>
+    </div>
+
+    <div className="text-center mt-6 mb-6">
+      <button
+        onClick={handlePrevious}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md mr-2 transition duration-300 ease-in-out"
+      >
+        Previous
+      </button>
+      <button
+        onClick={handleNext}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md ml-2 transition duration-300 ease-in-out"
+      >
+        Next
+      </button>
+    </div>
 
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-3 xl:grid-cols-3">
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (

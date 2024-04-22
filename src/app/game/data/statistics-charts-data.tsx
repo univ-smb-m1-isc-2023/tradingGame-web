@@ -1,7 +1,9 @@
 import { chartsConfig } from "../configs";
 import fetchFinancialData from "../../api/apiFinance";
-const getData = async (symbol: string,startDate : Date, endDate : Date) => {
+const getData = async (symbol: string,startDate : string, endDate : string) => {
   try {
+
+
     const data = await fetchFinancialData(symbol,startDate,endDate);
     console.log(data);
     data?.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {

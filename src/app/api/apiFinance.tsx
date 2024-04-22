@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { StockOrderBody } from "../game/interface/StockOrderBody";
 import { GameBody } from "../game/interface/GameBody";
 import {
@@ -10,13 +10,16 @@ import {
   fetchWithToken,
   fetchWithTokenNoOption,
 } from "@/utils/UserGestion";
+import { start } from "repl";
+import { subtractOneYear } from "./dateFunction";
 
 const fetchFinancialData = async (
   symbol: any,
   startTime: any,
   endTime: any
 ) => {
-  const url = base_url + `/stock/${symbol}/${startTime}/${endTime}`;
+  const StartTime = subtractOneYear(startTime);
+  const url = base_url + `/stock/${symbol}/${StartTime}/${endTime}`;
 
   return axiosGetWithToken(url);
 };

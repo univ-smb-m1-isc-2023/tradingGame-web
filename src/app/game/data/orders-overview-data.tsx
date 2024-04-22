@@ -23,17 +23,30 @@ export const ordersOverviewDataonPending = async (idGame: string, Player: Player
   const ordersPending = [];
   if (wallet != null) {
     for (const stockOrder of wallet.stockOrders) {
-      if (stockOrder.status == "PENDING")
+      if (stockOrder.status == "PENDING"){
+        let price = "---"
+        let total = "**"
+
+        if(stockOrder.price>0){
+          price = stockOrder.price.toLocaleString()
+          total = (stockOrder.price * stockOrder.quantity).toLocaleString()
+        }
+
+        
+
+        
+
         ordersPending.push({
           icon: ClockIcon,
           color: "text-blue-gray-300",
-          title: stockOrder.stockValue.symbol,
-          description: "TOTAL : " + stockOrder.price + "€, QT : " + stockOrder.quantity,
+          title: stockOrder.stockValue.symbol + " --- " + stockOrder.type,
+          description: "PRIX : " + price + "€, QT : " + stockOrder.quantity + ", TOT : "+total+"€",
         })
 
     }
   }
   return ordersPending
+}
 }
 
 export const ordersOverviewHistoricalData = async (idGame: string, player: PlayerInfo) => {
@@ -74,6 +87,15 @@ export const ordersOverviewHistoricalData = async (idGame: string, player: Playe
           break;
       }
 
+        let price = "---"
+        let total = "**"
+
+        if(stockOrder.price>0){
+          price = stockOrder.price.toLocaleString()+"€"
+          total = (stockOrder.price * stockOrder.quantity).toLocaleString()+"€"
+        }
+
+
       orders.push({
         icon,
         status: stockOrder.status,
@@ -81,7 +103,8 @@ export const ordersOverviewHistoricalData = async (idGame: string, player: Playe
         type : type,
         date: stockOrder.creationGameDate,
         title: stockOrder.stockValue.symbol,
-        description: `TOTAL: ${stockOrder.price}€, QT: ${stockOrder.quantity}`,
+        price : price,
+        total : total,
       });
     }
   }

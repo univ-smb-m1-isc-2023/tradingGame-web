@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 export const base_url ="http://localhost:8080" //"https://tradinggame-api.oups.net";
 
@@ -77,10 +77,15 @@ export const axiosPostWithToken = async (url: string, data: any) => {
 
         userLogOut();
         // Gérer les erreurs
-        console.error("Erreur lors de la requête POST:", error);
-
-        // Retourner une erreur ou null en fonction de vos besoins
-        return null;
+        const axiosError = error as AxiosError;
+        // Alert the entire response received from the server
+        if (axiosError.response) {
+        alert(JSON.stringify(axiosError.response.data)); // Alert the entire response object
+        } else {
+        console.error("Error:", axiosError.message); // Log any other type of error
+        }
+        // Optionally, you can re-throw the error to handle it further in the calling function
+        throw error;
     }
 };
 
