@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { StockOrderBody } from "../game/interface/StockOrderBody";
 import { GameBody } from "../game/interface/GameBody";
 import { start } from "repl";
@@ -141,15 +141,23 @@ export const fetchcreateGame = async (game : GameBody) =>{
     // Traiter la réponse
     console.log('Réponse de l\'API:', response.data);
     
+
+    
     // Retourner les données de réponse si nécessaire
     return response.data;
 
   } catch (error) {
     // Gérer les erreurs
-    console.error('Erreur lors de la requête POST:', error);
-    
-    // Retourner une erreur ou null en fonction de vos besoins
-    return null;
+    const axiosError = error as AxiosError;
+    // Alert the entire response received from the server
+    if (axiosError.response) {
+      alert(JSON.stringify(axiosError.response.data)); // Alert the entire response object
+    } else {
+      console.error('Error:', axiosError.message); // Log any other type of error
+    }
+    // Optionally, you can re-throw the error to handle it further in the calling function
+    throw error;
   }
+
 
 }

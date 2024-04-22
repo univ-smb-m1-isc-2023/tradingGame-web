@@ -7,16 +7,15 @@ import { findPlayer } from './findPlayer';
 import { PlayerInterface } from './findPlayer'
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import { useSearchParams } from 'next/navigation';
+
 import { PlayerInfo } from '../game/interface/PlayerInfo';
 const CreateNewGame: React.FC = () => {
   const searchParams = useSearchParams();
   const [MyPlayerInfo, setPlayerInfo] = useState<PlayerInfo | null>(null);
-
   const [playerIds, setPlayerIds] = useState<number[]>([]); // List of selected player IDs
   const [seconds, setSeconds] = useState<number>(20)
   const [player, setPlayer] = useState<string>("")
   const [searchResults, setSearchResults] = useState<PlayerInterface[] | null>([]);
-
   useEffect(() => {
     const fetchData = async () => {
       const playerID = searchParams.get("playerID");
@@ -62,16 +61,17 @@ const CreateNewGame: React.FC = () => {
     playerIds: playerIds,
   });
 
-  const createGame = () => {
+  const createGame = async () => {
 
     if (MyPlayerInfo != null) {
       console.log(MyPlayerInfo)
-      const finalPlayerIds = playerIds
-      if (!playerIds.includes(MyPlayerInfo.id)) {
+      if (!formData.playerIds.includes(MyPlayerInfo.id)) {
+        formData.adminId = MyPlayerInfo.id.toLocaleString()
         formData.playerIds.push(MyPlayerInfo.id)
       }
-      formData.playerIds = finalPlayerIds
-      fetchcreateGame(formData)
+      console.log("HEHEHEH")
+      console.log(formData)
+      await fetchcreateGame(formData)
     }
   }
 
