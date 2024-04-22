@@ -25,8 +25,8 @@ const CreateNewGame: React.FC = () => {
         if (playerID != null) {
           const playerResponse = await fetchPlayer(playerID);
 
-          formData.adminId = playerResponse.id
           if (playerResponse != null) {
+            formData.adminId = playerResponse.id
             setPlayerInfo(playerResponse);
           }
         }
