@@ -47,24 +47,26 @@ const CheckActions: React.FC<CheckOrderProps> = ({ game, player }) => {
                         <th className="text-left py-3 px-4">TITLE</th>
                         <th className="text-left py-3 px-4">PRICE</th>
                         <th className="text-left py-3 px-4">QUANTITY</th>
+                        <th className="text-left py-3 px-4">STATUS</th>
+
                    </tr>
                 </thead>
                 <tbody>
                     {ordersOverviewData && ordersOverviewData.length > 0 ? (
-                        ordersOverviewData.map(({ icon, title, price,quantity }, key) => (
+                        ordersOverviewData.map(({ icon, title, price,quantity,status }, key) => (
                             <tr key={key} className="border-b">
                                 <td className="py-3 px-4">{React.createElement(icon, {
                                     className: `!w-5 !h-5 ${"text-blue-gray-300"}`,
                                 })}</td>
                                 <td className="py-3 px-4">{title}</td>
-                                <td className="py-3 px-4">{price}</td>
+                                <td className="py-3 px-4">{price !== 0 ? price : "-"}</td>
                                 <td className="py-3 px-4">{quantity}</td>
                                 <td className="py-3 px-4">{status}</td>
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={6} className="py-3 px-4">--Aucun ordre de cette date--</td>
+                            <td colSpan={6} className="py-3 px-4">--Aucune action à cette date--</td>
                         </tr>
                     )}
                 </tbody>

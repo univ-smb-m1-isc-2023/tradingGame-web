@@ -3,10 +3,13 @@
 import axios from "axios";
 import { StockOrderBody } from "../game/interface/StockOrderBody";
 import { GameBody } from "../game/interface/GameBody";
+import { start } from "repl";
+import { subtractOneYear } from "./dateFunction";
 
-const fetchFinancialData = async ( symbol: any, startTime : any, endTime: any) => {
+const fetchFinancialData = async ( symbol: any, startTime : string , endTime: string) => {
   try {
-    const url =    `https://tradinggame-api.oups.net/stock/${symbol}/${startTime}/${endTime}`
+    const StartTime = subtractOneYear(startTime)
+    const url =    `https://tradinggame-api.oups.net/stock/${symbol}/${StartTime}/${endTime}`
     console.log(url)
     const response = await axios.get(
       url

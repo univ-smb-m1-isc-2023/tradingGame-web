@@ -27,6 +27,7 @@ const CreateNewGame: React.FC = () => {
 
           if (playerResponse != null) {
             formData.adminId = playerResponse.id
+
             setPlayerInfo(playerResponse);
           }
         }
@@ -62,11 +63,12 @@ const CreateNewGame: React.FC = () => {
   });
 
   const createGame = () => {
+
     if (MyPlayerInfo != null) {
       console.log(MyPlayerInfo)
       const finalPlayerIds = playerIds
-      if (MyPlayerInfo != null) {
-        finalPlayerIds.push(MyPlayerInfo.id)
+      if (!playerIds.includes(MyPlayerInfo.id)) {
+        formData.playerIds.push(MyPlayerInfo.id)
       }
       formData.playerIds = finalPlayerIds
       fetchcreateGame(formData)

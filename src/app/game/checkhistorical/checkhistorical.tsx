@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { CardBody, CardHeader, Typography } from "@material-tailwind/react";
-import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
+import { CardBody } from "@material-tailwind/react";
 import { ordersOverviewHistoricalData } from "../data";
 import { Game } from "../interface/Game";
 import { PlayerInfo } from "../interface/PlayerInfo";
@@ -49,11 +48,14 @@ const CheckHistoricalOrder: React.FC<CheckOrderProps> = ({ game, player }) => {
                         <th className="text-left py-3 px-4">DATE</th>
                         <th className="text-left py-3 px-4">TYPE</th>
                         <th className="text-left py-3 px-4">STATUS</th>
+                        <th className="text-left py-3 px-4">PRICE</th>
+                        <th className="text-left py-3 px-4">TOTAL</th>
+
                    </tr>
                 </thead>
                 <tbody>
                     {ordersOverviewData && ordersOverviewData.length > 0 ? (
-                        ordersOverviewData.map(({ icon, status, color, type, date, title, value }, key) => (
+                        ordersOverviewData.map(({ icon, status, color, type, date, title, price,total }, key) => (
                             <tr key={key} className="border-b">
                                 <td className="py-3 px-4">{React.createElement(icon, {
                                     className: `!w-5 !h-5 ${color}`,
@@ -62,6 +64,8 @@ const CheckHistoricalOrder: React.FC<CheckOrderProps> = ({ game, player }) => {
                                 <td className="py-3 px-4">{date}</td>
                                 <td className="py-3 px-4">{type}</td>
                                 <td className="py-3 px-4">{status}</td>
+                                <td className="py-3 px-4">{price}</td>
+                                <td className="py-3 px-4">{total}</td>
                             </tr>
                         ))
                     ) : (

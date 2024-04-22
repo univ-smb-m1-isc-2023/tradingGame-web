@@ -63,7 +63,7 @@ export function Dashboard({ player, game }: { player: PlayerInfo | null, game: G
         const dataMembers = await membersGameData(game)
         setMembersGame(dataMembers)
         const dataPendingOrders = await ordersOverviewDataonPending(game.id.toLocaleString(), player)
-        setordersOverviewData(dataPendingOrders)
+        setordersOverviewData(dataPendingOrders || []);
         setLoading(false); // Move setLoading(false) inside the fetchData function
       }
 

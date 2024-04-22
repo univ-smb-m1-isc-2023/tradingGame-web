@@ -16,26 +16,23 @@ import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
         const [loading, setLoading] = useState(true);
         const [ordersOverviewData, setOrdersOverviewData] = useState<any[]>([]);
     
-
         useEffect(() => {
             const fetchData = async () => {
                 try {
-
                     if (game && player) {
                         const dataPendingOrders = await ordersOverviewDataonPending(game.id.toLocaleString(), player);
-                        setOrdersOverviewData(dataPendingOrders);
-                        setLoading(false);
+                        setOrdersOverviewData(dataPendingOrders || []);                        setLoading(false);
                     }
                 } catch (error) {
                     console.error("Error fetching data:", error);
-                    setLoading(false); // Make sure to set loading to false even if there's an error
+                    setLoading(false);
                 }
             };
-
+        
             fetchData();
-
-        }, []); // Depend on searchParams to trigger useEffect when searchParams change
-
+        
+        }, [game, player]); // Depend on game and player to trigger useEffect when they change
+        
         if (loading) {
             return <div>Loading...</div>; // Render a loading indicator
         }
