@@ -24,8 +24,11 @@ const CreateNewGame: React.FC = () => {
       try {
         if (playerID != null) {
           const playerResponse = await fetchPlayer(playerID);
+
           formData.adminId = playerResponse.id
-          setPlayerInfo(playerResponse);
+          if (playerResponse != null) {
+            setPlayerInfo(playerResponse);
+          }
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,9 +62,12 @@ const CreateNewGame: React.FC = () => {
   });
 
   const createGame = () => {
-    if(MyPlayerInfo!=null){
+    if (MyPlayerInfo != null) {
+      console.log(MyPlayerInfo)
       const finalPlayerIds = playerIds
-      finalPlayerIds.push(MyPlayerInfo?.id)
+      if (MyPlayerInfo != null) {
+        finalPlayerIds.push(MyPlayerInfo.id)
+      }
       formData.playerIds = finalPlayerIds
       fetchcreateGame(formData)
     }

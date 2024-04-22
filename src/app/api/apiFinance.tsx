@@ -131,6 +131,7 @@ export const addOrder = async (order : StockOrderBody) =>{
 export const fetchcreateGame = async (game : GameBody) =>{
   try {
     
+    console.log(game)
     // Effectuer la requête POST
     const response = await axios.post('https://tradinggame-api.oups.net/game',game);
 
