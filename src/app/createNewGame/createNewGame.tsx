@@ -65,9 +65,11 @@ const CreateNewGame: React.FC = () => {
 
     if (MyPlayerInfo != null) {
       console.log(MyPlayerInfo)
+      formData.playerIds = playerIds
       if (!formData.playerIds.includes(MyPlayerInfo.id)) {
         formData.adminId = MyPlayerInfo.id.toLocaleString()
         formData.playerIds.push(MyPlayerInfo.id)
+        
       }
       console.log("HEHEHEH")
       console.log(formData)
