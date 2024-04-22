@@ -1,5 +1,6 @@
 "use client";
 import { Button, Typography, Card } from "@material-tailwind/react";
+import Link from "next/link";
 
 function Accueil() {
   return (
@@ -32,16 +33,18 @@ function Accueil() {
             place as the best in the world?
           </Typography>
           <div>
-            <Button
-              placeholder=""
-              variant="gradient"
-              color="white"
-              className="py-2 px-6 rounded-md text-lg font-semibold"
-              onPointerEnterCapture={null}
-              onPointerLeaveCapture={null}
-            >
-              PLAY FREE
-            </Button>
+            <Link href="/auth">
+              <Button
+                placeholder=""
+                variant="gradient"
+                color="white"
+                className="py-2 px-6 rounded-md text-lg font-semibold"
+                onPointerEnterCapture={null}
+                onPointerLeaveCapture={null}
+              >
+                PLAY FREE
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

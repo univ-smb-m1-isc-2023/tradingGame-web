@@ -6,6 +6,7 @@ import { Suspense, useEffect, useState } from "react";
 import { PlayerInfo } from "../game/interface/PlayerInfo";
 import { useSearchParams } from "next/navigation";
 import { fetchPlayer } from "../api/apiFinance";
+import SettingsPlayer from "./SettingsPlayer";
 
 export default function Gamelist() {
   const [playerInfo, setPlayerInfo] = useState<PlayerInfo | null>(null); // Set initial value as null
@@ -16,12 +17,13 @@ export default function Gamelist() {
     //console.log("playerID",playerID)
     const fetchPlayerInfo = async () => {
       try {
-        if (playerID!=null) { // Check if playerID is available
+        if (playerID != null) {
+          // Check if playerID is available
           const response = await fetchPlayer(playerID);
           setPlayerInfo(response); // Set playerInfo state
         }
       } catch (error) {
-        console.error('Error fetching player info:', error);
+        console.error("Error fetching player info:", error);
       }
     };
 
@@ -30,9 +32,14 @@ export default function Gamelist() {
 
   // Render the GameTable component only when playerInfo is available
   return (
-      <>
-        <ImageBackTop />
-        {playerInfo && <GameTable playerInfo={playerInfo} />}
-      </>
+    <>
+      <ImageBackTop />
+      {playerInfo && (
+        <>
+          <SettingsPlayer />
+          <GameTable playerInfo={playerInfo} />
+        </>
+      )}
+    </>
   );
 }

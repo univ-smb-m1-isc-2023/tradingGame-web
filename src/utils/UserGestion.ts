@@ -115,3 +115,39 @@ export const axiosGetWithToken = async (url: string) => {
         return null;
     }
 };
+
+export const axiosDeleteWithToken = async (url: string) => {
+    // Définir les options avec le token d'authentification
+
+    const options: AxiosRequestConfig = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
+    try {
+        // Effectuer la requête POST avec les données et les options
+        const response = await axios.delete(url, options);
+
+        // Traiter la réponse
+        console.log("Réponse de l'API:", response.data);
+        userLogOut();
+        window.location.href = `/`;
+
+        // Retourner les données de réponse si nécessaire
+        return response.data;
+    } catch (error) {
+
+        userLogOut();
+        // Gérer les erreurs
+        const axiosError = error as AxiosError;
+        // Alert the entire response received from the server
+        if (axiosError.response) {
+        alert(JSON.stringify(axiosError.response.data)); // Alert the entire response object
+        } else {
+        console.error("Error:", axiosError.message); // Log any other type of error
+        }
+        // Optionally, you can re-throw the error to handle it further in the calling function
+        throw error;
+    }
+};
