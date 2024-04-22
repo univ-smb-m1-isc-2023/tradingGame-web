@@ -1,19 +1,22 @@
 import { chartsConfig } from "../configs";
 import fetchFinancialData from "../../api/apiFinance";
-const getData = async (symbol: string,startDate : string, endDate : string) => {
+const getData = async (symbol: string, startDate: string, endDate: string) => {
   try {
-
-
-    const data = await fetchFinancialData(symbol,startDate,endDate);
+    const data = await fetchFinancialData(symbol, startDate, endDate);
     console.log(data);
-    data?.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateA.getTime() - dateB.getTime(); // Utilisez getTime() pour comparer les dates en millisecondes
-    });
-    
+    data?.sort(
+      (
+        a: { date: string | number | Date },
+        b: { date: string | number | Date }
+      ) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateA.getTime() - dateB.getTime(); // Utilisez getTime() pour comparer les dates en millisecondes
+      }
+    );
+
     const { categories, series } = await dataToLegends(data);
-    
+
     console.log("Categories:", categories);
     console.log("Series:", series);
     return { categories, series };
@@ -36,25 +39,37 @@ interface FinancialData {
 
 const dataToLegends = async (rawData: FinancialData[]) => {
   // Extracting categories based on month names
-  const categories = rawData.map(item => {
+  const categories = rawData.map((item) => {
     const date = new Date(item.date);
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
     const month = monthNames[date.getMonth()];
     const year = date.getFullYear().toString().slice(-2); // Get last two digits of the year
-    const day = date.getDate().toString().padStart(2, '0'); // Get day and pad with zero if needed
+    const day = date.getDate().toString().padStart(2, "0"); // Get day and pad with zero if needed
     return `${day}${month}${year}`;
   });
-  
-  
 
   // Separating data by properties (low, open, high, close)
-  const series = Object.keys(rawData[0]).filter(key => key !== "date" && key !== "volume" && key !== "id").map(property => {
-    
-    return {
-      name: property,
-      data: rawData.map(item => item[property])
-    };
-  });
+  const series = Object.keys(rawData[0])
+    .filter((key) => key !== "date" && key !== "volume" && key !== "id")
+    .map((property) => {
+      return {
+        name: property,
+        data: rawData.map((item) => item[property]),
+      };
+    });
 
   return { categories, series };
 };
@@ -78,20 +93,18 @@ let dailySalesChart: {
   },
 };
 
-
-
-
-export const fetchCharttoData = async (symbol : any,startTime:any, endTime :any) => {
+export const fetchCharttoData = async (
+  symbol: any,
+  startTime: any,
+  endTime: any
+) => {
   try {
-    let data = await getData(symbol,startTime,endTime); // Assuming getData returns a Promise
-    
-    
+    let data = await getData(symbol, startTime, endTime); // Assuming getData returns a Promise
+
     const categoriesData = data?.categories ?? [];
     const seriesData = data?.series ?? [];
     console.log("Categories:", categoriesData);
     console.log("Series:", seriesData);
-    
-    // Save data to LocalStorage
 
     return {
       type: "line",
@@ -101,7 +114,7 @@ export const fetchCharttoData = async (symbol : any,startTime:any, endTime :any)
         ...chartsConfig,
         colors: ["#9400D3", "#FFD700", "#0000FF", "#008000"],
         stroke: {
-          curve: 'straight',
+          curve: "straight",
         },
         markers: {
           size: 5,
@@ -118,8 +131,12 @@ export const fetchCharttoData = async (symbol : any,startTime:any, endTime :any)
   }
 };
 
-
-export const fetchstatisticsChartData = async (title: string, symbol: string, startDate: string, endDate: string) => {
+export const fetchstatisticsChartData = async (
+  title: string,
+  symbol: string,
+  startDate: string,
+  endDate: string
+) => {
   return {
     color: "black",
     title: title,
@@ -128,6 +145,3 @@ export const fetchstatisticsChartData = async (title: string, symbol: string, st
     chart: await fetchCharttoData(symbol, startDate, endDate),
   };
 };
-
-
-

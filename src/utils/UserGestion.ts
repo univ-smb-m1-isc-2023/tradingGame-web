@@ -2,13 +2,19 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 export const base_url ="https://tradinggame-api.oups.net"; //"http://localhost:8080" 
 
-const tokentmp = localStorage.getItem('token');
+let tokentmp = null
+if (typeof window !== 'undefined') {
+    tokentmp = localStorage.getItem('token');
+}
 let token = ""
 if (tokentmp) {
     token = tokentmp;
 } 
 
-const idUserTmp = localStorage.getItem('idUser')
+let idUserTmp = null
+if (typeof window !== 'undefined') {
+    idUserTmp = localStorage.getItem('idUser')
+}
 export let idUser = -1;
 if(idUserTmp){
     idUser = parseInt(idUserTmp)
@@ -19,8 +25,11 @@ export function setToken(newToken: string) {
 }
 
 export function userLogOut() {
-    localStorage.setItem('token', "");
-    localStorage.setItem('idUser', "-1")
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('token', "");
+        localStorage.setItem('idUser', "-1")
+    }
+    
 }
 
 

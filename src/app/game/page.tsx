@@ -7,7 +7,15 @@ import router from "next/router";
 export function DashboardHome() {
   useEffect(() => {
     // Vérifie si le token est vide
-    const token = localStorage.getItem("token");
+    let token;
+    if (typeof window !== "undefined") {
+      token = localStorage.getItem("token");
+      if (!token) {
+        token = "";
+      }
+    } else {
+      token = "";
+    }
     if (token === "") {
       // Redirige vers la page d'accueil
       window.location.href = `/`;

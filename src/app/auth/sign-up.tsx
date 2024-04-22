@@ -38,8 +38,11 @@ export function SignUp() {
         const data = await response.json();
 
         setIdUser(data.userId);
-        localStorage.setItem("token", data.token);
-        window.location.href = `https://tradinggame-api.oups.net/player/${data.userId}`;
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("idUser", "" + idUser);
+        }
+        window.location.href = `/gamelist?playerID=${data.userId}`;
       } else {
         // Traitement des erreurs si la requête échoue
         const data = await response.json();
