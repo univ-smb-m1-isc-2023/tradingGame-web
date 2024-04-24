@@ -3,7 +3,7 @@ export interface Wallet {
     id : number;
     ownerUsername: string;
     balance: number;
-    availableBalance : number;
+    availableBalance : number;  
     lastMonthProfit: number;
     lastYearProfit: number;
   }

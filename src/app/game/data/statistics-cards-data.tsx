@@ -26,10 +26,10 @@ export const FetchStatisticsCardsData = async (symbols: SymbolInfo[], currentDat
         color: "black",
         icon: BanknotesIcon,
         title: symbol.name,
-        value: data[data.length-1].open.toFixed(3),
+        value: data[data.length-1].open.toFixed(3) +"€", 
         footer: {
           color: diff > 0 ? "text-green-500" : "text-red-500", // Corrected conditional color
-          value: diff.toFixed(2),
+          value: diff.toFixed(2)  +"€",
           label: "than yesterday",
         },
       });

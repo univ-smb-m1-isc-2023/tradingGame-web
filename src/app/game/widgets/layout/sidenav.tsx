@@ -17,12 +17,7 @@ import {
 import {
   PresentationChartBarIcon,
   ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
-  InformationCircleIcon,
-  LockClosedIcon,
+  QueueListIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Game } from "../../interface/Game";
@@ -314,9 +309,13 @@ export function Sidebar({
                   onPointerEnterCapture={null}
                   onPointerLeaveCapture={null}
                 >
-                  <UserCircleIcon className="h-5 w-5" />
+                  <QueueListIcon className="h-5 w-5" />
                 </ListItemPrefix>
-                <a href={`../gamelist?playerID=${player.id}`}>Account</a>
+                <a href={`../gamelist?playerID=${player.id}`}
+                  className="text-blue-gray-600 hover:text-blue-gray-800"
+                    >
+
+                  Gamelist</a>
               </ListItem>
             </List>
           </>
