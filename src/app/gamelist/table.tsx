@@ -51,8 +51,8 @@ export default function GameTable({ playerInfo }: GameTableProps) {
                     </thead>
                     <tbody>
                       {/* Row  */}
-                      {playerInfo.createdGames.map((game) => (
-                        <GameRowComponent idGame={game.id} idPlayer={playerInfo.id} />
+                      {playerInfo.wallets.map((game) => (
+                        <GameRowComponent idGame={game.gameId} idPlayer={playerInfo.id} />
                       ))}
                     </tbody>
                   </table>
