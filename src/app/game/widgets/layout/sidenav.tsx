@@ -79,12 +79,16 @@ export function Sidebar({
               />
 
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold text-blue-gray-700">
+                <h4 className="text-lg font-semibold text-blue-gray-700">
                   {player?.username}
-                </h3>
-                <p className="text-l font-bold text-blue-gray-700">
-                  {myWallet?.balance.toFixed(2)}€
+                </h4>
+                <p className="text-s  text-blue-gray-700">
+                  {"Money : " + myWallet?.availableBalance.toFixed(2)}€
                 </p>
+                <p className="text-s  text-blue-gray-700">
+                  {"Wallet :  " + myWallet?.balance.toFixed(2)}€
+                </p>
+              
               </div>
             </div>
             <List

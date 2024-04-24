@@ -69,14 +69,23 @@ const CreateNewGame: React.FC = () => {
       if (!formData.playerIds.includes(MyPlayerInfo.id)) {
         formData.adminId = MyPlayerInfo.id.toLocaleString()
         formData.playerIds.push(MyPlayerInfo.id)
-        
+
       }
       console.log("HEHEHEH")
       console.log(formData)
-      await fetchcreateGame(formData)
+      if(await fetchcreateGame(formData)){
+        changePage()
+      }
+      //await changePage()
     }
   }
 
+  const changePage =  () => {
+    if (MyPlayerInfo != null) {
+
+      window.location.href = '../gamelist?playerID=' + MyPlayerInfo.id; // Redirect to the specified URL
+    }
+  }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
@@ -271,18 +280,16 @@ const CreateNewGame: React.FC = () => {
           <div>
 
             {MyPlayerInfo !== null && (
-              <a href={`../gamelist?playerID=${MyPlayerInfo.id}`}>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent the default behavior of the button click
-                    createGame(); // Call the createGame function
-                  }}
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Create Game
-                </button>
-              </a>
+              <button
+                type="button"
+                onClick={async (e) => {
+                  e.preventDefault(); // Prevent the default behavior of the button click
+                  await createGame(); // Call the createGame function
+                }}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Create Game
+              </button>
             )}
           </div>
         </form>

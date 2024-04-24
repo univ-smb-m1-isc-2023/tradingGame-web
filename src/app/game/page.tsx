@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect } from "react";
 import { DashBoardFetch } from "./DashBoardFetch";
-import router from "next/router";
 
 export function DashboardHome() {
   useEffect(() => {

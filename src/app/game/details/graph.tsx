@@ -16,7 +16,7 @@ interface GraphDetailsProps {
 
 const GraphDetails: React.FC<GraphDetailsProps> = ({ symbol, name, player, game }) => {
   const [statisticsChartsData, setStatisticsChartsData] = useState<any[]>([]);
-  const [OpenValue, setOpenValue] = useState<number>(0);
+  const [OpenValue, setOpenValue] = useState<number>(0.0); // Assuming OpenValue is a number
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -62,10 +62,8 @@ const GraphDetails: React.FC<GraphDetailsProps> = ({ symbol, name, player, game 
 
         </>
       )}
-    {statisticsChartsData && <DialogAchat player={player} game={game} openValue={OpenValue} symbol={symbol}/>}
-  
-    {statisticsChartsData && <DialogVente player={player} game={game} openValue={OpenValue} symbol={symbol}/>}
-
+{statisticsChartsData && OpenValue !== 0.0 && <DialogAchat player={player} game={game} openValue={OpenValue} symbol={symbol} />}
+{statisticsChartsData && OpenValue !== 0.0 && <DialogVente player={player} game={game} openValue={OpenValue} symbol={symbol} />}
     </div>
 
 

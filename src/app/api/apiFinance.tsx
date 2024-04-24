@@ -18,7 +18,7 @@ const fetchFinancialData = async (
   startTime: any,
   endTime: any
 ) => {
-  const StartTime = subtractOneYear(startTime);
+  const StartTime = subtractOneYear(endTime);
   const url = base_url + `/stock/${symbol}/${StartTime}/${endTime}`;
 
   return axiosGetWithToken(url);
@@ -115,5 +115,6 @@ export const addOrder = async (order: StockOrderBody) => {
 export const fetchcreateGame = async (game: GameBody) => {
   //console.log(game);
   // Effectuer la requête POST
-  axiosPostWithToken(base_url + "/game", game);
+  const res =  await axiosPostWithToken(base_url + "/game", game);
+  return res
 };
