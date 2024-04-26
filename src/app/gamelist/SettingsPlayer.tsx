@@ -26,12 +26,10 @@ const SettingsPlayer: React.FC = () => {
   };
 
   const handleDeleteAccount = async () => {
-    // Logique de suppression du compte à implémenter
-
     console.log("Suppression du compte...");
     let idTemp;
     if (typeof window !== "undefined") {
-      let idTemp = localStorage.getItem("idUser");
+      idTemp = await localStorage.getItem("idUser");
     }
     let id = -1;
     if (idTemp) {

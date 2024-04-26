@@ -47,7 +47,9 @@ export function SignIn() {
         window.location.href = `/gamelist?playerID=${data.userId}`;
       } else {
         // Traitement des erreurs si la requête échoue
+        alert("Username or password incorrect");
         const data = await response.json();
+
         alert(data.message); // Afficher un message d'erreur de l'API
       }
     } catch (error) {

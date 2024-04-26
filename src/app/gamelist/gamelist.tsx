@@ -20,7 +20,7 @@ export default function Gamelist() {
         if (playerID != null) {
           // Check if playerID is available
           const response = await fetchPlayer(playerID);
-          console.log(response)
+          console.log(response);
           setPlayerInfo(response); // Set playerInfo state
         }
       } catch (error) {
